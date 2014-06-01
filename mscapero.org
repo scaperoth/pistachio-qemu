@@ -16,4 +16,7 @@ set up the make menuconfig with x86 basic architecture, 64 bit sub architecture 
 with a pentium4 processor type -- DESPITE SUGGESTION IN THE GUIDE FOUND AT THE LINK ABOVE, "...if you are planning to run the kernel using the Qemu emulator, then choose Pentium 1".     
 Debugging mode enabled. Performance monitoring enabled.    
 No options chosen for debugger.
+***** TODO configure user level pistachio
+unable to run configuration. used autoconf to build ../user/configure.in, but make is throwing errors.      
 
+receiving error: "no rule to make target 'config.h', needed by 'amd64.o'. Stop.
