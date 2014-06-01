@@ -1,14 +1,14 @@
 ** Tasks
-*** DONE set up linux enviornment: 
+- DONE set up linux enviornment: 
 Linux ubuntu 3.5.0-23-generic #35~precise1-Ubuntu SMP Fri Jan 25 17:13:26 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
-*** DONE Create new repo with org file
-*** DONE install qemu and add to repo: 
+- DONE Create new repo with org file
+- DONE install qemu and add to repo: 
 http://wiki.qemu.org/Hosts/Linux using the git, git clone git://git.qemu-project.org/qemu.git
-*** DONE Install autoconf to run pistachio configure.in file
-*** DONE install pistachio and add to repo: 
+- DONE Install autoconf to run pistachio configure.in file
+- DONE install pistachio and add to repo: 
 http://www.l4ka.org/154.php
 set up the make menuconfig with x86 basic architecture, 64 bit sub architecture (processor architecture)
-with a pentium4 processor type -- despite suggestion in the guide found at the link above, "...if you are planning to run the kernel using the Qemu emulator, then choose Pentium 1". 
-Debugging mode enabled. Performance monitoring enabled.
+with a pentium4 processor type -- despite suggestion in the guide found at the link above, "...if you are planning to run the kernel using the Qemu emulator, then choose Pentium 1".     
+Debugging mode enabled. Performance monitoring enabled.    
 No options chosen for debugger.
 
