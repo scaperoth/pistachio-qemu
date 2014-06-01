@@ -3,6 +3,7 @@
 #+STARTUP: showall
 
 *** Tasks
+<2014-06-01 Sun>
 **** DONE set up linux enviornment: 
 Linux ubuntu 3.5.0-23-generic #35~precise1-Ubuntu SMP Fri Jan 25 17:13:26 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
 **** DONE Create new repo with org file
