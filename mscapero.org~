@@ -1,6 +1,0 @@
-* Tasks
-** DONE set up linux enviornment: Linux ubuntu 3.5.0-23-generic #35~precise1-Ubuntu SMP Fri Jan 25 17:13:26 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
-
-** DONE Create new repo with org file
-** DONE install qemu and add to repo. Installed from http://wiki.qemu.org/Hosts/Linux using the git, git clone git://git.qemu-project.org/qemu.git
-** TODO install pistachio and add to repo
