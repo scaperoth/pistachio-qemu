@@ -5,18 +5,20 @@
 *** Tasks
 <2014-05-31 Sat>-<2014-06-01 Sun>
 **** DONE set up linux enviornment: 
-Linux v 12.04: uname -- Linux ubuntu 3.5.0-23-generic #35~precise1-Ubuntu SMP 
+Linux v 12.04: uname -- Linux ubuntu 3.11.0-22-generic #38~precise1-Ubuntu SMP i686 i686 i386 GNU/Linux 
 **** DONE Create new repo with org file
-**** DONE install qemu and add to repo: 
-http://wiki.qemu.org/Hosts/Linux using the git, git clone git://git.qemu-project.org/qemu.git
+**** DONE install qemu and aqemu
 **** DONE Install autoconf to run pistachio configure.in file
-**** DONE install pistachio and add to repo: 
+**** TODO install pistachio and add to repo: 
 http://www.l4ka.org/154.php
-set up the make menuconfig with x86 basic architecture, 64 bit sub architecture (processor architecture)
-with a pentium4 processor type -- DESPITE SUGGESTION IN THE GUIDE FOUND AT THE LINK ABOVE, "...if you are planning to run the kernel using the Qemu emulator, then choose Pentium 1".     
+set up the make menuconfig with x86 basic architecture, 32 bit sub architecture (processor architecture)
+with a pentium1  processor type 
 Debugging mode enabled. Performance monitoring enabled.    
 No options chosen for debugger.
-***** TODO configure user level pistachio
+***** DONE configure user level pistachio
 unable to run configuration. used autoconf to build ../user/configure.in, but make is throwing errors.      
 
 receiving error: "no rule to make target 'config.h', needed by 'amd64.o'. Stop.
+FIX NOTE: used suggestion found @ https://lists.gnu.org/archive/html/nmh-workers/2008-08/msg00032.html. running autoheader then autoconf in the l4ka-pistachio/user/ folder resulted in a clean build.
+
+***** TODO run pistachio on qemu
