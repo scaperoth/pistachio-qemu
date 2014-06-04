@@ -1,0 +1,48 @@
+crt0-ia32.o: ../../../user/serv/sigma0/crt0-ia32.S ../../config.h
+sigma0_io.o: ../../../user/serv/sigma0/sigma0_io.cc \
+ ../../../user/include/l4/arch.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/include/l4/ia32/arch.h ../../../user/include/l4/kip.h \
+ ../../../user/include/l4/ipc.h ../../../user/include/l4/thread.h \
+ ../../../user/include/l4/kdebug.h ../../../user/include/l4/ia32/kdebug.h \
+ ../../../user/include/l4io.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/serv/sigma0/sigma0.h ../../../user/serv/sigma0/region.h
+sigma0.o: ../../../user/serv/sigma0/sigma0.cc \
+ ../../../user/include/l4/kip.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/include/l4/ipc.h ../../../user/include/l4/thread.h \
+ ../../../user/include/l4/misc.h ../../../user/include/l4/kdebug.h \
+ ../../../user/include/l4/ia32/kdebug.h ../../../user/include/l4io.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/serv/sigma0/sigma0.h ../../../user/include/l4/arch.h \
+ ../../../user/include/l4/ia32/arch.h ../../../user/serv/sigma0/region.h
+sigma0_mem.o: ../../../user/serv/sigma0/sigma0_mem.cc \
+ ../../../user/include/l4/kip.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/include/l4/kdebug.h ../../../user/include/l4/ia32/kdebug.h \
+ ../../../user/include/l4io.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/serv/sigma0/sigma0.h ../../../user/include/l4/arch.h \
+ ../../../user/include/l4/ia32/arch.h ../../../user/include/l4/ipc.h \
+ ../../../user/include/l4/thread.h ../../../user/serv/sigma0/region.h
+region.o: ../../../user/serv/sigma0/region.cc \
+ ../../../user/include/l4/message.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/kdebug.h \
+ ../../../user/include/l4/ia32/kdebug.h ../../../user/include/l4io.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/serv/sigma0/sigma0.h ../../../user/include/l4/kip.h \
+ ../../../user/include/l4/ia32/syscalls.h ../../../user/include/l4/arch.h \
+ ../../../user/include/l4/ia32/arch.h ../../../user/include/l4/ipc.h \
+ ../../../user/include/l4/thread.h ../../../user/serv/sigma0/region.h

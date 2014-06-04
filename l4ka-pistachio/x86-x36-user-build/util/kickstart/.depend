@@ -1,0 +1,78 @@
+crt0-ia32.o: ../../../user/util/kickstart/crt0-ia32.S ../../config.h
+kickstart.o: ../../../user/util/kickstart/kickstart.cc ../../config.h \
+ ../../../user/include/l4io.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/util/kickstart/kickstart.h
+kipmgr.o: ../../../user/util/kickstart/kipmgr.cc \
+ ../../../user/util/kickstart/kipmgr.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h ../../../user/include/l4/kcp.h \
+ ../../../user/include/l4/kip.h ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/util/kickstart/lib.h ../../../user/util/kickstart/elf.h \
+ ../../../user/util/kickstart/bootinfo.h ../../config.h \
+ ../../../user/util/kickstart/mbi.h ../../../user/include/l4/bootinfo.h
+elf.o: ../../../user/util/kickstart/elf.cc ../../config.h \
+ ../../../user/include/l4io.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/util/kickstart/kickstart.h \
+ ../../../user/util/kickstart/elf.h \
+ ../../../user/util/kickstart/bootinfo.h \
+ ../../../user/util/kickstart/mbi.h ../../../user/include/l4/bootinfo.h \
+ ../../../user/util/kickstart/lib.h
+lib.o: ../../../user/util/kickstart/lib.cc \
+ ../../../user/util/kickstart/lib.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h
+bootinfo.o: ../../../user/util/kickstart/bootinfo.cc ../../config.h \
+ ../../../user/include/l4io.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/util/kickstart/bootinfo.h \
+ ../../../user/util/kickstart/mbi.h ../../../user/include/l4/bootinfo.h \
+ ../../../user/util/kickstart/kickstart.h \
+ ../../../user/util/kickstart/lib.h ../../../user/util/kickstart/elf.h
+ia32.o: ../../../user/util/kickstart/ia32.cc ../../config.h \
+ ../../../user/include/l4io.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/util/kickstart/kickstart.h \
+ ../../../user/util/kickstart/mbi.h ../../../user/util/kickstart/kipmgr.h \
+ ../../../user/include/l4/kcp.h ../../../user/include/l4/kip.h \
+ ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/util/kickstart/lib.h
+mbi.o: ../../../user/util/kickstart/mbi.cc \
+ ../../../user/util/kickstart/mbi.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ ../../../user/util/kickstart/lib.h
+mbi-ia32.o: ../../../user/util/kickstart/mbi-ia32.cc ../../config.h \
+ ../../../user/include/l4io.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/include/l4/kip.h ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/util/kickstart/kickstart.h \
+ ../../../user/util/kickstart/mbi.h ../../../user/util/kickstart/lib.h \
+ ../../../user/util/kickstart/kipmgr.h ../../../user/include/l4/kcp.h
+mbi-loader.o: ../../../user/util/kickstart/mbi-loader.cc ../../config.h \
+ ../../../user/include/l4io.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/util/kickstart/kickstart.h \
+ ../../../user/util/kickstart/mbi.h ../../../user/util/kickstart/kipmgr.h \
+ ../../../user/include/l4/kcp.h ../../../user/include/l4/kip.h \
+ ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/util/kickstart/lib.h ../../../user/util/kickstart/elf.h \
+ ../../../user/util/kickstart/bootinfo.h \
+ ../../../user/include/l4/bootinfo.h

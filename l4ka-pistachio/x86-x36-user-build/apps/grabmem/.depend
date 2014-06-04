@@ -1,0 +1,11 @@
+crt0-ia32.o: ../../../user/apps/grabmem/crt0-ia32.S ../../config.h
+grabmem.o: ../../../user/apps/grabmem/grabmem.cc \
+ ../../../user/include/l4io.h ../../../user/include/l4/types.h \
+ ../../../user/include/l4/ia32/types.h \
+ ../../../user/include/l4/ia32/specials.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ ../../../user/include/l4/sigma0.h ../../../user/include/l4/kip.h \
+ ../../../user/include/l4/ia32/syscalls.h \
+ ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
+ ../../../user/include/l4/ipc.h ../../../user/include/l4/thread.h \
+ ../../../user/include/l4/kdebug.h ../../../user/include/l4/ia32/kdebug.h
