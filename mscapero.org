@@ -19,10 +19,12 @@ No options chosen for debugger.
 unable to run configuration. used autoconf to build ../user/configure.in, but make is throwing errors.      
 
 receiving error: "no rule to make target 'config.h', needed by 'amd64.o'. Stop.
-FIX NOTE: used suggestion found @ https://lists.gnu.org/archive/html/nmh-workers/2008-08/msg00032.html. running autoheader then autoconf in the l4ka-pistachio/user/ folder resulted in a clean build.
 
 ***** DONE
+FIX NOTE: used suggestion found @ https://lists.gnu.org/archive/html/nmh-workers/2008-08/msg00032.html. running autoheader then autoconf in the l4ka-pistachio/user/ folder resulted in a clean build.
+
+***** DONE 
 unloaded grub2 and loaded grub legacy using instructions found at http://pclinuxos2007.blogspot.com/2010/09/linux-how-to-replace-grub2-with-grub.html 
 
-***** DONE run pistachio on qemu
+**** DONE run pistachio on qemu
 Run using /usr/sbin/grub and /usr/local/libexec/l4/ instead of /sbin/grub and l4ka-pistachio/x86-x32-user-install/libexec/l4/ respectively
