@@ -36,12 +36,12 @@ ARCH=		ia32
 PLAT=           amd64-pc99
 KERNEL=		x86-kernel
 
-prefix=		/usr/local
+prefix=		/home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/x86-x36-user-build../x86-x32-user-install
 exec_prefix=	${prefix}
 includedir=	${prefix}/include
 libdir=		${exec_prefix}/lib/l4
 libexecdir=	${exec_prefix}/libexec/l4
-kerneldir=	$(top_builddir)
+kerneldir=	../x86-kernel-build
 
 
 SHELL=		/bin/bash

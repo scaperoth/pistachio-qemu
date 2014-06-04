@@ -9,7 +9,7 @@ Linux v 12.04: uname -- Linux ubuntu 3.11.0-22-generic #38~precise1-Ubuntu SMP i
 **** DONE Create new repo with org file
 **** DONE install qemu and aqemu
 **** DONE Install autoconf to run pistachio configure.in file
-**** TODO install pistachio and add to repo: 
+**** DONE install pistachio and add to repo: 
 http://www.l4ka.org/154.php
 set up the make menuconfig with x86 basic architecture, 32 bit sub architecture (processor architecture)
 with a pentium1  processor type 
@@ -21,4 +21,8 @@ unable to run configuration. used autoconf to build ../user/configure.in, but ma
 receiving error: "no rule to make target 'config.h', needed by 'amd64.o'. Stop.
 FIX NOTE: used suggestion found @ https://lists.gnu.org/archive/html/nmh-workers/2008-08/msg00032.html. running autoheader then autoconf in the l4ka-pistachio/user/ folder resulted in a clean build.
 
-***** TODO run pistachio on qemu
+***** DONE
+unloaded grub2 and loaded grub legacy using instructions found at http://pclinuxos2007.blogspot.com/2010/09/linux-how-to-replace-grub2-with-grub.html 
+
+***** DONE run pistachio on qemu
+Run using /usr/sbin/grub and /usr/local/libexec/l4/ instead of /sbin/grub and l4ka-pistachio/x86-x32-user-install/libexec/l4/ respectively
