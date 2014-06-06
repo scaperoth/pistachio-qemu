@@ -12,7 +12,7 @@ pingpong.o: ../../../../user/apps/bench/pingpong/pingpong.cc \
  ../../../../user/include/l4/kdebug.h \
  ../../../../user/include/l4/ia32/kdebug.h \
  ../../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
  ../../../../user/include/l4/arch.h \
  ../../../../user/include/l4/ia32/arch.h \
  ../../../../user/apps/bench/pingpong/ia32.h \

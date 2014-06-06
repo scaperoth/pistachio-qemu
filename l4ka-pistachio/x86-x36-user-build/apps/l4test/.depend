@@ -6,7 +6,7 @@ main.o: ../../../user/apps/l4test/main.cc ../../../user/include/l4/kip.h \
  ../../../user/include/l4/thread.h ../../../user/include/l4/ipc.h \
  ../../../user/include/l4/kdebug.h ../../../user/include/l4/ia32/kdebug.h \
  ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/apps/l4test/menu.h \
  ../../../user/apps/l4test/assert.h
@@ -15,14 +15,14 @@ assert.o: ../../../user/apps/l4test/assert.cc \
  ../../../user/include/l4/ia32/types.h \
  ../../../user/include/l4/ia32/specials.h \
  ../../../user/include/l4/ia32/kdebug.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/assert.h
 menu.o: ../../../user/apps/l4test/menu.cc \
  ../../../user/include/l4/kdebug.h ../../../user/include/l4/types.h \
  ../../../user/include/l4/ia32/types.h \
  ../../../user/include/l4/ia32/specials.h \
  ../../../user/include/l4/ia32/kdebug.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/l4test.h ../../../user/apps/l4test/string.h \
  ../../../user/include/l4/kip.h ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
@@ -36,7 +36,7 @@ threads.o: ../../../user/apps/l4test/threads.cc \
  ../../../user/include/l4/thread.h ../../../user/include/l4/space.h \
  ../../../user/include/l4/schedule.h ../../../user/include/l4/ipc.h \
  ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
  ../../../user/apps/l4test/l4test.h ../../../user/apps/l4test/string.h
 string.o: ../../../user/apps/l4test/string.cc \
  ../../../user/apps/l4test/string.h ../../../user/include/l4/types.h \
@@ -51,7 +51,7 @@ ipc.o: ../../../user/apps/l4test/ipc.cc ../../../user/include/l4/ipc.h \
  ../../../user/include/l4/arch.h ../../../user/include/l4/ia32/arch.h \
  ../../../user/include/l4/kip.h ../../../user/include/l4/kdebug.h \
  ../../../user/include/l4/ia32/kdebug.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/apps/l4test/menu.h \
  ../../../user/apps/l4test/assert.h
@@ -62,7 +62,7 @@ ipc-string.o: ../../../user/apps/l4test/ipc-string.cc \
  ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4/thread.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/include/l4/kip.h \
  ../../../user/apps/l4test/menu.h ../../../user/apps/l4test/assert.h
@@ -74,7 +74,7 @@ ipc-pf.o: ../../../user/apps/l4test/ipc-pf.cc \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4/ipc.h ../../../user/include/l4/thread.h \
  ../../../user/include/l4/kip.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/apps/l4test/menu.h \
  ../../../user/apps/l4test/assert.h
@@ -86,7 +86,7 @@ ipc-smp.o: ../../../user/apps/l4test/ipc-smp.cc \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4/thread.h ../../../user/include/l4/space.h \
  ../../../user/include/l4/kip.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/apps/l4test/menu.h
 kip.o: ../../../user/apps/l4test/kip.cc ../../../user/include/l4/kip.h \
@@ -95,14 +95,14 @@ kip.o: ../../../user/apps/l4test/kip.cc ../../../user/include/l4/kip.h \
  ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/apps/l4test/menu.h \
  ../../../user/apps/l4test/assert.h
 mem.o: ../../../user/apps/l4test/mem.cc ../../../user/include/l4/types.h \
  ../../../user/include/l4/ia32/types.h \
  ../../../user/include/l4/ia32/specials.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/include/l4/kip.h \
  ../../../user/include/l4/ia32/syscalls.h \
@@ -114,7 +114,7 @@ sig0.o: ../../../user/apps/l4test/sig0.cc ../../../user/include/l4/ipc.h \
  ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4/thread.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/include/l4/kip.h \
  ../../../user/apps/l4test/menu.h ../../../user/apps/l4test/assert.h
@@ -125,7 +125,7 @@ exreg.o: ../../../user/apps/l4test/exreg.cc \
  ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4/ipc.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
  ../../../user/include/l4/kip.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/apps/l4test/menu.h \
@@ -137,7 +137,7 @@ tcontrol.o: ../../../user/apps/l4test/tcontrol.cc \
  ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/include/l4/kip.h \
  ../../../user/apps/l4test/menu.h ../../../user/apps/l4test/assert.h \
@@ -149,7 +149,7 @@ schedule.o: ../../../user/apps/l4test/schedule.cc \
  ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
  ../../../user/include/l4/schedule.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h ../../config.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h ../../config.h \
  ../../../user/apps/l4test/ia32/arch.h ../../../user/apps/l4test/l4test.h \
  ../../../user/apps/l4test/string.h ../../../user/include/l4/kip.h \
  ../../../user/apps/l4test/menu.h ../../../user/apps/l4test/assert.h \
@@ -174,7 +174,7 @@ tests.o: ../../../user/apps/l4test/ia32/tests.cc \
  ../../../user/include/l4/schedule.h ../../../user/include/l4/kdebug.h \
  ../../../user/include/l4/ia32/kdebug.h \
  ../../../user/include/l4/ia32/arch.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
  ../../../user/apps/l4test/ia32/../l4test.h \
  ../../../user/apps/l4test/ia32/../string.h \
  ../../../user/apps/l4test/ia32/../assert.h \

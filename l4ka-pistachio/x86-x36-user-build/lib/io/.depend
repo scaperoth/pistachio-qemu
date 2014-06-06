@@ -1,11 +1,11 @@
 get_hex.o: ../../../user/lib/io/get_hex.cc \
  ../../../user/include/l4/types.h ../../../user/include/l4/ia32/types.h \
  ../../../user/include/l4/ia32/specials.h ../../../user/include/l4io.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h
 print.o: ../../../user/lib/io/print.cc ../../../user/include/l4/types.h \
  ../../../user/include/l4/ia32/types.h \
  ../../../user/include/l4/ia32/specials.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
  ../../../user/include/l4io.h ../../../user/lib/io/lib.h
 ia32.o: ../../../user/lib/io/ia32.cc ../../config.h \
  ../../../user/include/l4/types.h ../../../user/include/l4/ia32/types.h \

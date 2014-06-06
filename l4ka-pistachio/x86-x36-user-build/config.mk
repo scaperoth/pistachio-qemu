@@ -36,7 +36,7 @@ ARCH=		ia32
 PLAT=           amd64-pc99
 KERNEL=		x86-kernel
 
-prefix=		/home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/x86-x36-user-build../x86-x32-user-install
+prefix=		/home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/x86-x36-user-build/../x86-x32-user-install
 exec_prefix=	${prefix}
 includedir=	${prefix}/include
 libdir=		${exec_prefix}/lib/l4
@@ -50,8 +50,8 @@ CXX=		$(CC) -x c++
 AS=		$(CC)
 CFLAGS=		-fno-stack-protector -nostdinc -g -O2 -m32
 CXXFLAGS=	$(CFLAGS) -fno-exceptions
-LDFLAGS=	-N -L$(top_builddir)/lib -L/usr/lib/gcc/i686-linux-gnu/4.6 -nostdlib  -melf_i386
-CPPFLAGS=	-I$(top_srcdir)/include -I$(top_builddir) -I/usr/lib/gcc/i686-linux-gnu/4.6/include 
+LDFLAGS=	-N -L$(top_builddir)/lib -L/usr/lib/gcc/i686-linux-gnu/4.8 -nostdlib  -melf_i386
+CPPFLAGS=	-I$(top_srcdir)/include -I$(top_builddir) -I/usr/lib/gcc/i686-linux-gnu/4.8/include 
 LGCC=		-lgcc
 
 TOOLPREFIX=	

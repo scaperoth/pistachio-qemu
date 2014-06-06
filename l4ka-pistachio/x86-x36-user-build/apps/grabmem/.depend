@@ -3,7 +3,7 @@ grabmem.o: ../../../user/apps/grabmem/grabmem.cc \
  ../../../user/include/l4io.h ../../../user/include/l4/types.h \
  ../../../user/include/l4/ia32/types.h \
  ../../../user/include/l4/ia32/specials.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdarg.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
  ../../../user/include/l4/sigma0.h ../../../user/include/l4/kip.h \
  ../../../user/include/l4/ia32/syscalls.h \
  ../../../user/include/l4/ia32/vregs.h ../../../user/include/l4/message.h \
