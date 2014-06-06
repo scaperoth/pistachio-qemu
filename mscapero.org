@@ -24,7 +24,21 @@ receiving error: "no rule to make target 'config.h', needed by 'amd64.o'. Stop.
 FIX NOTE: used suggestion found @ https://lists.gnu.org/archive/html/nmh-workers/2008-08/msg00032.html. running autoheader then autoconf in the l4ka-pistachio/user/ folder resulted in a clean build.
 
 ***** DONE 
-unloaded grub2 and loaded grub legacy using instructions found at http://pclinuxos2007.blogspot.com/2010/09/linux-how-to-replace-grub2-with-grub.html 
+unloaded grub2 and loaded grub legacy using instructions found at http://pclinuxos2007.blogspot.com/2010/09/linux-how-to-replace-grub2-with-grub.html      
+Note: Better and more complete instructions used from http://ubuntuforums.org/showthread.php?t=1298932     
+        
+'''sudo mv /boot/grub /boot/grub_backup      
+'''sudo mkdir /boot/grub      
+'''sudo apt-get --purge remove startupmanager     
+'''sudo apt-get --purge remove grub-pc grub-common    
+'''sudo apt-get install grub     
+'''sudo update-grub      
+'''sudo fdisk -l <-- use this to find out which drive to install to     
+'''sudo grub-install /dev/sda      
+'''sudo grub      
+'''find /boot/grub/stage1     
+'''root (hd0,0)     
+'''setup (hd0)      
 
 **** DONE run pistachio on qemu
 Followed instrctuions found at http://www.l4ka.org/120.php under the *Booting and Running* section.     
