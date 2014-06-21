@@ -57,4 +57,6 @@ Followed instrctuions found at http://www.l4ka.org/120.php under the *Booting an
 Exception to guide: Ran using /usr/sbin/grub and /usr/local/libexec/l4/ instead of /sbin/grub and l4ka-pistachio/x86-x32-user-install/libexec/l4/ respectively
      
 final command once image was built: qemu -serial stdio -fda fdimage.img -boot c
-
+    
+*Other Notes*      
+use "sudo make image" to build image file
