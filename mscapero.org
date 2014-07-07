@@ -61,7 +61,13 @@ final command once image was built: qemu -serial stdio -fda fdimage.img -boot c
 *Other Notes*      
 use "sudo make image" to build image file
 
-*****TODO       
+***** TODO       
        
 *BUILDING A CUSTOM MODULE*       
-to build a custom module you need gcc and g++ == v 4.8
+to build a custom module you need gcc and g++ == v 4.8        
+    
+use makefile found in l4ka-pistachio/x86-x36-user-build/apps/bench/pingpong       
+    
+this makefile can be used as a template to build custom modules.      
+     
+current custom module is "mypingpong" and is a debugging duplicate of "pingpong"
