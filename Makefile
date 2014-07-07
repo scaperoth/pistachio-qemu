@@ -1,4 +1,6 @@
 IMGFILE = pistachio.img
+ROOTFOLDER = pistachiosource
+DRIVE = fd0
 
 image:	
 	rm -f $(IMGFILE) mtoolsrc bmap
@@ -7,15 +9,19 @@ image:
 	MTOOLSRC=./mtoolsrc mformat -f 1440 a:
 	MTOOLSRC=./mtoolsrc mmd a:/boot
 	MTOOLSRC=./mtoolsrc mmd a:/boot/grub
-	MTOOLSRC=./mtoolsrc mcopy fdsource/boot/grub/stage1 a:/boot/grub
-	MTOOLSRC=./mtoolsrc mcopy fdsource/boot/grub/stage2 a:/boot/grub
-	MTOOLSRC=./mtoolsrc mcopy fdsource/boot/grub/fat_stage1_5 a:/boot/grub
-	MTOOLSRC=./mtoolsrc mcopy fdsource/boot/grub/menu.lst a:/boot/grub/
-	MTOOLSRC=./mtoolsrc mcopy fdsource/x86-kernel a:/
-	MTOOLSRC=./mtoolsrc mcopy fdsource/kickstart a:/
-	MTOOLSRC=./mtoolsrc mcopy fdsource/sigma0 a:/
-	MTOOLSRC=./mtoolsrc mcopy fdsource/pingpong a:/
-	echo "(fd0)  $(IMGFILE)" > bmap
-	printf "setup (fd0) \n root (fd0) \n setup (fd0)\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/boot/grub/stage1 a:/boot/grub
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/boot/grub/stage2 a:/boot/grub
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/boot/grub/fat_stage1_5 a:/boot/grub
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/boot/grub/menu.lst a:/boot/grub/
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/x86-kernel a:/
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/kickstart a:/
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/sigma0 a:/
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/pingpong a:/
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/mypingpong a:/
+	echo "($(DRIVE))  $(IMGFILE)" > bmap
+	printf "setup ($(DRIVE)) \n root ($(DRIVE)) \n setup ($(DRIVE))\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
 	rm -f Makefile~
 	rm -f mtoolsrc bmap
+
+run:	
+	qemu-system-i386 -serial stdio -fda pistachio.img -boot c

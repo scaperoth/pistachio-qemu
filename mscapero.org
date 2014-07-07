@@ -60,3 +60,8 @@ final command once image was built: qemu -serial stdio -fda fdimage.img -boot c
     
 *Other Notes*      
 use "sudo make image" to build image file
+
+*****TODO       
+       
+*BUILDING A CUSTOM MODULE*       
+to build a custom module you need gcc and g++ == v 4.8

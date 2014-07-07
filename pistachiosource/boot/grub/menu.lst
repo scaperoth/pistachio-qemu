@@ -1,4 +1,4 @@
-root (fd0,0)
+root (hd0,0)
 default=0
 timeout=3
 # serial --port=0x3f8 --speed=115200
@@ -7,4 +7,4 @@ title L4Ka::Pistachio
         kernel /kickstart
         module /x86-kernel
         module /sigma0
- module /pingpong
+ module /mypingpong
