@@ -1,6 +1,6 @@
 IMGFILE = pistachio.img
 ROOTFOLDER = pistachiosource
-DRIVE = fd0
+DRIVE = hd1
 
 image:	
 	rm -f $(IMGFILE) mtoolsrc bmap
