@@ -19,7 +19,7 @@ image:
 	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/pingpong a:/
 	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/mypingpong a:/
 	echo "($(DRIVE))  $(IMGFILE)" > bmap
-	printf "setup ($(DRIVE)) \n root ($(DRIVE)) \n setup ($(DRIVE))\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
+	printf "root ($(DRIVE),0) \n setup ($(DRIVE),0)\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
 	rm -f Makefile~
 	rm -f mtoolsrc bmap
 
