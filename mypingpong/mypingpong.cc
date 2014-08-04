@@ -480,7 +480,8 @@ int main (void)
 	{
 	    if (printmenu)
 	    {
-	   	printf("Number of Processors: %d", NumMemoryDescriptors(kip));
+	   	printf("\nL4_NumProcessors: %d\n", L4_NumProcessors(kip));
+	   	printf("L4_NumMemoryDescriptors: %d\n", L4_NumMemoryDescriptors(kip));
 		printf ("\nPlease select ipc type:\n");
 		printf ("\r\n"
 			"1: INTER-AS\r\n"

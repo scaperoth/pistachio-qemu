@@ -1,8 +1,12 @@
 IMGFILE = pistachio.img
 ROOTFOLDER = pistachiosource
 DRIVE = hd1
+MODULENAME = mypingpong
+#MODULEPATH = l4ka-pistachio/x86-x36-user-build/apps/bench/
 
-image:	
+all: module image
+
+image:
 	rm -f $(IMGFILE) mtoolsrc bmap
 	dd if=/dev/zero of=$(IMGFILE) bs=512 count=2880
 	echo 'drive a: file="$(IMGFILE)"'> mtoolsrc
@@ -22,6 +26,10 @@ image:
 	printf "root ($(DRIVE),0) \n setup ($(DRIVE),0)\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
 	rm -f Makefile~
 	rm -f mtoolsrc bmap
+
+module:
+	make -f $(MODULENAME)/Makefile
+	cp -rf $(MODULENAME)/$(MODULENAME) pistachiosource/ 
 
 run:	
 	qemu-system-i386 -serial stdio -fda pistachio.img -boot c

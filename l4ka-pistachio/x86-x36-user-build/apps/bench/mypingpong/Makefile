@@ -28,10 +28,9 @@
 ## $Id: Makefile.in,v 1.10 2006/11/22 15:09:07 skoglund Exp $
 ##                
 ######################################################################
-
-srcdir=		../../../../user/apps/bench/mypingpong
-top_srcdir=	../../../../user
-top_builddir=	../../..
+srcdir=		l4ka-pistachio/user/apps/bench/mypingpong
+top_srcdir=	l4ka-pistachio/user
+top_builddir=	l4ka-pistachio/x86-x36-user-build/
 
 include $(top_srcdir)/Mk/l4.base.mk
 

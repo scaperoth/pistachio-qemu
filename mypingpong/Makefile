@@ -1,8 +1,8 @@
 ######################################################################
 ##                
-## Copyright (C) 2003,  Karlsruhe University
+## Copyright (C) 2003, 2006-2007, 2010,  Karlsruhe University
 ##                
-## File path:     Makefile.in
+## File path:     bench/pingpong/Makefile.in
 ##                
 ## Redistribution and use in source and binary forms, with or without
 ## modification, are permitted provided that the following conditions
@@ -25,18 +25,33 @@
 ## OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 ## SUCH DAMAGE.
 ##                
-## $Id: Makefile.in,v 1.5 2003/11/24 16:39:30 skoglund Exp $
+## $Id: Makefile.in,v 1.10 2006/11/22 15:09:07 skoglund Exp $
 ##                
 ######################################################################
-
-srcdir=		l4ka-pistachio/x86-x36-user-build/user/apps
-top_srcdir=	l4ka-pistachio/x86-x36-user-build/user
-top_builddir=	..
+srcdir=		../l4ka-pistachio/user/apps/bench/mypingpong
+top_srcdir=	../l4ka-pistachio/user
+top_builddir=	../l4ka-pistachio/x86-x36-user-build/
 
 include $(top_srcdir)/Mk/l4.base.mk
 
 
-SUBDIRS=	bench grabmem l4test
+PROGRAM=	mypingpong
+PROGRAM_DEPS=	$(top_builddir)/lib/l4/libl4.a \
+		$(top_builddir)/lib/io/libio.a
 
+amd64_SRCS=	pingpong-amd64-32.cc
+SRCS=		crt0-$(ARCH).S mypingpong.cc $($(ARCH)_SRCS)
 
-include $(top_srcdir)/Mk/l4.subdir.mk
+LIBS+=		-ll4 -lio
+LDFLAGS+=	-Ttext=$(ROOTTASK_LINKBASE)
+
+CFLAGS_powerpc+=	-fno-builtin -msoft-float
+CXXFLAGS_powerpc+=	-fno-rtti
+
+CCFLAGS_pingpong-amd64-32 = $(subst -m64,-m32,$(CCFLAGS)) -m32 -fno-exceptions
+
+pingpong-amd64-32.o: pingpong-amd64-32.cc
+	$(CC) $(CPPFLAGS) $(CCFLAGS_$*) -x c++ -c $< -o $(notdir $@)
+	$(OBJCOPY) -g -O elf64-x86-64 $(notdir $@) $(notdir $@)
+
+include $(top_srcdir)/Mk/l4.prog.mk
