@@ -36,7 +36,7 @@ top_builddir=	../..
 include $(top_srcdir)/Mk/l4.base.mk
 
 
-SUBDIRS=	pingpong mypingpong
+SUBDIRS=	pingpong
 
 
 include $(top_srcdir)/Mk/l4.subdir.mk

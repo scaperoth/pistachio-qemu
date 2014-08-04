@@ -29,8 +29,8 @@
 ##                
 ######################################################################
 
-srcdir=		l4ka-pistachio/x86-x36-user-build/user/apps
-top_srcdir=	l4ka-pistachio/x86-x36-user-build/user
+srcdir=		../../user/apps
+top_srcdir=	../../user
 top_builddir=	..
 
 include $(top_srcdir)/Mk/l4.base.mk

@@ -28,19 +28,20 @@
 ## $Id: Makefile.in,v 1.10 2006/11/22 15:09:07 skoglund Exp $
 ##                
 ######################################################################
-srcdir=		l4ka-pistachio/user/apps/bench/mypingpong
-top_srcdir=	l4ka-pistachio/user
-top_builddir=	l4ka-pistachio/x86-x36-user-build/
+
+srcdir=		../../../../user/apps/bench/mypingpong
+top_srcdir=	../../../../user
+top_builddir=	../../..
 
 include $(top_srcdir)/Mk/l4.base.mk
 
 
-PROGRAM=	mypingpong
+PROGRAM=	pingpong
 PROGRAM_DEPS=	$(top_builddir)/lib/l4/libl4.a \
 		$(top_builddir)/lib/io/libio.a
 
 amd64_SRCS=	pingpong-amd64-32.cc
-SRCS=		crt0-$(ARCH).S mypingpong.cc $($(ARCH)_SRCS)
+SRCS=		crt0-$(ARCH).S pingpong.cc $($(ARCH)_SRCS)
 
 LIBS+=		-ll4 -lio
 LDFLAGS+=	-Ttext=$(ROOTTASK_LINKBASE)
