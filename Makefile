@@ -1,6 +1,8 @@
 IMGFILE = pistachio.img
 ROOTFOLDER = pistachiosource
 DRIVE = hd1
+MODULE = pingpong
+CONFIGOPTIONS = 
 
 image:	
 	rm -f $(IMGFILE) mtoolsrc bmap
@@ -16,12 +18,15 @@ image:
 	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/x86-kernel a:/
 	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/kickstart a:/
 	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/sigma0 a:/
-	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/pingpong a:/
-	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/mypingpong a:/
+	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/$(MODULE) a:/
+
 	echo "($(DRIVE))  $(IMGFILE)" > bmap
 	printf "root ($(DRIVE),0) \n setup ($(DRIVE),0)\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
 	rm -f Makefile~
 	rm -f mtoolsrc bmap
 
-run:	
-	qemu-system-i386 -serial stdio -fda pistachio.img -boot c
+config:
+	cp l4ka-pistachio/x86-kernel-build/x86-kernel l4ka-pistachio/x86-x32-user-install/libexec/l4/
+	find pistachiosource/ -maxdepth 1 -type f -delete
+	cp l4ka-pistachio/x86-kernel-build/x86-kernel pistachiosource/
+	cp l4ka-pistachio/x86-x32-user-install/libexec/l4/* pistachiosource/

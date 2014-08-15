@@ -1,7 +1,7 @@
 /* Automatically generated, don't edit */
 /* Generated on: ubuntu */
-/* At: Wed, 04 Jun 2014 04:52:02 +0000 */
-/* Linux version 3.11.0-22-generic (buildd@lamiak) (gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) ) #38~precise1-Ubuntu SMP Fri May 16 20:50:12 UTC 2014 */
+/* At: Thu, 14 Aug 2014 15:58:04 +0000 */
+/* Linux version 3.13.0-24-generic (buildd@roseapple) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #46-Ubuntu SMP Thu Apr 10 19:08:14 UTC 2014 */
 
 /* Pistachio Kernel Configuration System */
 
@@ -65,10 +65,10 @@
 #undef  CONFIG_KDB_NO_ASSERTS
 
 /* Trace Settings */
-#define CONFIG_VERBOSE_INIT 1
-#define CONFIG_TRACEPOINTS 1
-#define CONFIG_KMEM_TRACE 1
-#define CONFIG_TRACEBUFFER 1
+#undef  CONFIG_VERBOSE_INIT
+#undef  CONFIG_TRACEPOINTS
+#undef  CONFIG_KMEM_TRACE
+#undef  CONFIG_TRACEBUFFER
 
 
 
