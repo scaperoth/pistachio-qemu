@@ -1,10 +1,17 @@
 IMGFILE = pistachio.img
 ROOTFOLDER = pistachiosource
 DRIVE = hd1
+<<<<<<< HEAD
 MODULE = pingpong
 CONFIGOPTIONS = 
+=======
+MODULENAME = mypingpong
+#MODULEPATH = l4ka-pistachio/x86-x36-user-build/apps/bench/
+>>>>>>> 9e77118968a3ab7e430d4803f2e9772d91485b49
 
-image:	
+all: module image
+
+image:
 	rm -f $(IMGFILE) mtoolsrc bmap
 	dd if=/dev/zero of=$(IMGFILE) bs=512 count=2880
 	echo 'drive a: file="$(IMGFILE)"'> mtoolsrc
@@ -25,8 +32,17 @@ image:
 	rm -f Makefile~
 	rm -f mtoolsrc bmap
 
+<<<<<<< HEAD
 config:
 	cp l4ka-pistachio/x86-kernel-build/x86-kernel l4ka-pistachio/x86-x32-user-install/libexec/l4/
 	find pistachiosource/ -maxdepth 1 -type f -delete
 	cp l4ka-pistachio/x86-kernel-build/x86-kernel pistachiosource/
 	cp l4ka-pistachio/x86-x32-user-install/libexec/l4/* pistachiosource/
+=======
+module:
+	make -f $(MODULENAME)/Makefile
+	cp -rf $(MODULENAME)/$(MODULENAME) pistachiosource/ 
+
+run:	
+	qemu-system-i386 -serial stdio -fda pistachio.img -boot c
+>>>>>>> 9e77118968a3ab7e430d4803f2e9772d91485b49

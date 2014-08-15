@@ -1,0 +1,22 @@
+crt0-ia32.o: ../l4ka-pistachio/user/apps/bench/mypingpong/crt0-ia32.S
+mypingpong.o: ../l4ka-pistachio/user/apps/bench/mypingpong/mypingpong.cc \
+ ../l4ka-pistachio/x86-x36-user-build/config.h \
+ ../l4ka-pistachio/user/include/l4/kip.h \
+ ../l4ka-pistachio/user/include/l4/types.h \
+ ../l4ka-pistachio/user/include/l4/ia32/types.h \
+ ../l4ka-pistachio/user/include/l4/ia32/specials.h \
+ ../l4ka-pistachio/user/include/l4/ia32/syscalls.h \
+ ../l4ka-pistachio/user/include/l4/ia32/vregs.h \
+ ../l4ka-pistachio/user/include/l4/message.h \
+ ../l4ka-pistachio/user/include/l4/ipc.h \
+ ../l4ka-pistachio/user/include/l4/thread.h \
+ ../l4ka-pistachio/user/include/l4/schedule.h \
+ ../l4ka-pistachio/user/include/l4/kdebug.h \
+ ../l4ka-pistachio/user/include/l4/ia32/kdebug.h \
+ ../l4ka-pistachio/user/include/l4io.h \
+ /usr/lib/gcc/i686-linux-gnu/4.8/include/stdarg.h \
+ ../l4ka-pistachio/user/include/l4/arch.h \
+ ../l4ka-pistachio/user/include/l4/ia32/arch.h \
+ ../l4ka-pistachio/user/apps/bench/mypingpong/ia32.h \
+ ../l4ka-pistachio/user/include/l4/tracebuffer.h \
+ ../l4ka-pistachio/user/include/l4/ia32/tracebuffer.h
