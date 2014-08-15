@@ -74,8 +74,6 @@ current custom module is "mypingpong" and is a debugging duplicate of "pingpong"
 
 ***** DONE     
 to edit mypingpong (custom module) run make from within the top directory mypingpong folder (a make clean may be necessary)      
-<<<<<<< HEAD
+
 then run "make image" from the top project directoy
-=======
-then run "make image" from the top project directoy
->>>>>>> 9e77118968a3ab7e430d4803f2e9772d91485b49
+
