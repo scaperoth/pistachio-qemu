@@ -1,7 +1,7 @@
 IMGFILE = pistachio.img
 ROOTFOLDER = pistachiosource
 DRIVE = hd1
-MODULE = pingpong
+MODULE = mypingpong
 CONFIGOPTIONS = 
 #MODULEPATH = l4ka-pistachio/x86-x36-user-build/apps/bench/
 
@@ -34,8 +34,6 @@ config:
 	find pistachiosource/ -maxdepth 1 -type f -delete
 	cp l4ka-pistachio/x86-kernel-build/x86-kernel pistachiosource/
 	cp l4ka-pistachio/x86-x32-user-install/libexec/l4/* pistachiosource/
+	cp -rf $(MODULE)/$(MODULE) pistachiosource/ 
 
-module:
-	make -f $(MODULENAME)/Makefile
-	cp -rf $(MODULENAME)/$(MODULENAME) pistachiosource/ 
 

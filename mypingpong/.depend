@@ -1,6 +1,6 @@
 crt0-ia32.o: ../l4ka-pistachio/user/apps/bench/mypingpong/crt0-ia32.S
 mypingpong.o: ../l4ka-pistachio/user/apps/bench/mypingpong/mypingpong.cc \
- ../l4ka-pistachio/x86-x36-user-build/config.h \
+ ../l4ka-pistachio/x86-x32-user-build/config.h \
  ../l4ka-pistachio/user/include/l4/kip.h \
  ../l4ka-pistachio/user/include/l4/types.h \
  ../l4ka-pistachio/user/include/l4/ia32/types.h \
