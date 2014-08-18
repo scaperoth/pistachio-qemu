@@ -7,4 +7,4 @@ title L4Ka::Pistachio
         kernel /kickstart
         module /x86-kernel
         module /sigma0
- module /pingpong
+ module /mypingpong

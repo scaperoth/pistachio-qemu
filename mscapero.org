@@ -19,7 +19,9 @@ No options chosen for debugger.
 unable to run configuration. used autoconf to build ../user/configure.in, but make is throwing errors.      
 
 receiving error: "no rule to make target 'config.h', needed by 'amd64.o'. Stop.
-
+      
+*To convgure run ../user/configure --prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport    
+        
 ***** DONE
 FIX NOTE: used suggestion found @ https://lists.gnu.org/archive/html/nmh-workers/2008-08/msg00032.html. running autoheader then autoconf in the l4ka-pistachio/user/ folder resulted in a clean build.
 

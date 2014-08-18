@@ -1,9 +1,8 @@
 ######################################################################
 ##                
-## Copyright (C) 2003-2004, 2007,  Karlsruhe University
+## Copyright (C) 2003, 2006-2007, 2010,  Karlsruhe University
 ##                
-## File path:     config.mk.in
-## Description:   Configuration settings for current build
+## File path:     bench/pingpong/Makefile.in
 ##                
 ## Redistribution and use in source and binary forms, with or without
 ## modification, are permitted provided that the following conditions
@@ -26,50 +25,34 @@
 ## OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 ## SUCH DAMAGE.
 ##                
-## $Id: config.mk.in,v 1.13 2006/10/21 04:08:17 reichelt Exp $
+## $Id: Makefile.in,v 1.10 2006/11/22 15:09:07 skoglund Exp $
 ##                
 ######################################################################
 
-# config.mk.  Generated from config.mk.in by configure.
+srcdir=		../../../../user/apps/bench/mypingpong
+top_srcdir=	../../../../user
+top_builddir=	../../..
 
-ARCH=		ia32
-PLAT=           amd64-pc99
-KERNEL=		x86-kernel
-
-prefix=		/home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/x86-x32-user-build/../x86-x32-user-install
-exec_prefix=	${prefix}
-includedir=	${prefix}/include
-libdir=		${exec_prefix}/lib/l4
-libexecdir=	${exec_prefix}/libexec/l4
-kerneldir=	../x86-kernel-build
+include $(top_srcdir)/Mk/l4.base.mk
 
 
-SHELL=		/bin/bash
-CC=		gcc
-CXX=		$(CC) -x c++
-AS=		$(CC)
-CFLAGS=		-fno-stack-protector -nostdinc -g -O2 -m32
-CXXFLAGS=	$(CFLAGS) -fno-exceptions
-LDFLAGS=	-N -L$(top_builddir)/lib -L/usr/lib/gcc/i686-linux-gnu/4.8 -nostdlib  -melf_i386
-CPPFLAGS=	-I$(top_srcdir)/include -I$(top_builddir) -I/usr/lib/gcc/i686-linux-gnu/4.8/include 
-LGCC=		-lgcc
+PROGRAM=	pingpong
+PROGRAM_DEPS=	$(top_builddir)/lib/l4/libl4.a \
+		$(top_builddir)/lib/io/libio.a
 
-TOOLPREFIX=	
-AR=		$(TOOLPREFIX)ar
-RANLIB=		$(TOOLPREFIX)ranlib
-LD=		$(TOOLPREFIX)ld
-OBJCOPY=	$(TOOLPREFIX)objcopy
-RMDIR=		rmdir
-LN_S=		ln -s
-AUTOCONF=	autoconf
-MKDIRHIER=	$(top_srcdir)/../tools/mkdirhier
-AWK=		mawk
+amd64_SRCS=	pingpong-amd64-32.cc
+SRCS=		crt0-$(ARCH).S pingpong.cc $($(ARCH)_SRCS)
 
-INSTALL=	/usr/bin/install -c
-INSTALL_PROGRAM=${INSTALL}
-INSTALL_DATA=	${INSTALL} -m 644
-INSTALL_SCRIPT=	${INSTALL}
+LIBS+=		-ll4 -lio
+LDFLAGS+=	-Ttext=$(ROOTTASK_LINKBASE)
 
-KICKSTART_LINKBASE=	00800000
-SIGMA0_LINKBASE=	00020000
-ROOTTASK_LINKBASE=	00400000
+CFLAGS_powerpc+=	-fno-builtin -msoft-float
+CXXFLAGS_powerpc+=	-fno-rtti
+
+CCFLAGS_pingpong-amd64-32 = $(subst -m64,-m32,$(CCFLAGS)) -m32 -fno-exceptions
+
+pingpong-amd64-32.o: pingpong-amd64-32.cc
+	$(CC) $(CPPFLAGS) $(CCFLAGS_$*) -x c++ -c $< -o $(notdir $@)
+	$(OBJCOPY) -g -O elf64-x86-64 $(notdir $@) $(notdir $@)
+
+include $(top_srcdir)/Mk/l4.prog.mk
