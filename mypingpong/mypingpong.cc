@@ -47,6 +47,7 @@ extern long _start_pong_thread;
 #define START_ADDR(func)    ((L4_Word_t) func)
 #endif
 
+#define DEBUG 0
 
 #define IPC_ARCH_OPTIMIZATION
 
@@ -202,14 +203,14 @@ void pong_thread (void)
 #define ROUNDS (1000)
 #define FACTOR      (8)
 #define MRSTEPPING  1
-#define ITERATIONS 10
+#define ITERATIONS 10000
 
 void ping_thread (void)
 {
     int counter = 0, untyped = 0;
-    unsigned long avgcycles = 0;
-    unsigned long avginstrs = 0;
-    unsigned long avgus = 0;
+    L4_Word64_t avgcycles = 0;
+    L4_Word64_t avginstrs = 0;
+    L4_Word64_t avgus = 0;
 
     L4_Word64_t cycles1, cycles2;
     L4_Clock_t usec1, usec2;
@@ -223,7 +224,7 @@ void ping_thread (void)
            MIGRATE  ? "XCPU" :
            INTER_AS ? "Inter-AS" : "Intra-AS");
 
-    for (int counter = 0; counter< ITERATIONS; counter++)
+    for (; counter < ITERATIONS; counter++)
     {
 
         L4_Word_t i = ROUNDS;
@@ -248,16 +249,21 @@ void ping_thread (void)
         cycles2 = read_cycles ();
         usec2 = L4_SystemClock ();
         instrs2 = read_instrs ();
-        avgcycles += ((unsigned long)(cycles2 - cycles1));
-        avgus += ((unsigned long)(usec2 - usec1).raw);
-        avginstrs += ((unsigned long)(instrs2 - instrs1));
-        printf ("IPC : %lu cycles, %lu us, %lu instrs\n",
-            ((unsigned long)(avgcycles)),
-            ((unsigned long)(avgus)) ,
-            ((unsigned long)(avginstrs)));
+
+        avgcycles += cycles2 - cycles1;
+        avgus += (usec2 - usec1).raw;
+        avginstrs += instrs2 - instrs1;
+
+        if (DEBUG && counter <= 20)
+        {
+            printf ("IPC : %lu cycles, %lu us, %lu instrs\n",
+                    ((unsigned long)(cycles2 - cycles1)),
+                    ((unsigned long)((usec2 - usec1).raw)) ,
+                    ((unsigned long)(instrs2 - instrs1)));
+        }
 
     }
-    printf ("IPC : %lu cycles, %lu us, %lu instrs\n",
+    printf ("Average IPC : %lu cycles, %lu us, %lu instrs\n",
             ((unsigned long)(avgcycles)) / (ITERATIONS),
             ((unsigned long)(avgus)) / (ITERATIONS),
             ((unsigned long)(avginstrs)) / (ITERATIONS));
@@ -265,7 +271,7 @@ void ping_thread (void)
     // Tell master that we're finished
     L4_Set_MsgTag (L4_Niltag);
     L4_Send (roottid);
-    
+
     for (;;)
         L4_Sleep (L4_Never);
 

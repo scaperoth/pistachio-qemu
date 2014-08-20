@@ -2,6 +2,18 @@
 #+EMAIL: mscapero@gwu.edu
 #+STARTUP: showall
 
+***General      
+To run this program simply run       
+```      
+make qemu     
+```     
+from the console to clean, build the image, and run qemu.      
+To only clean and build a new image, run     
+```      
+make    
+```    
+
+
 *** Tasks
 <2014-05-31 Sat>-<2014-06-01 Sun>
 **** DONE set up linux enviornment: 

@@ -5,11 +5,11 @@ MODULE = mypingpong
 CONFIGOPTIONS = 
 #MODULEPATH = l4ka-pistachio/x86-x36-user-build/apps/bench/
 
-all: module config image 
-	qemu pistachio.img
+all: clean module config image qemu
+
 
 image:
-	rm -f $(IMGFILE) mtoolsrc bmap
+	
 	dd if=/dev/zero of=$(IMGFILE) bs=512 count=2880
 	echo 'drive a: file="$(IMGFILE)"'> mtoolsrc
 	MTOOLSRC=./mtoolsrc mformat -f 1440 a:
@@ -38,9 +38,13 @@ config:
 	cp -rf $(MODULE)/$(MODULE) pistachiosource/ 
 
 module:
-	make clean -C mypingpong
 	make -C mypingpong
-	
 
+qemu:
+	qemu pistachio.img
+
+clean:
+	make clean -C mypingpong
+	rm -f $(IMGFILE) mtoolsrc bmap
 
 
