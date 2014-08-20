@@ -5,7 +5,8 @@ MODULE = mypingpong
 CONFIGOPTIONS = 
 #MODULEPATH = l4ka-pistachio/x86-x36-user-build/apps/bench/
 
-all: module image
+all: module config image 
+	qemu pistachio.img
 
 image:
 	rm -f $(IMGFILE) mtoolsrc bmap
@@ -35,5 +36,11 @@ config:
 	cp l4ka-pistachio/x86-kernel-build/x86-kernel pistachiosource/
 	cp l4ka-pistachio/x86-x32-user-install/libexec/l4/* pistachiosource/
 	cp -rf $(MODULE)/$(MODULE) pistachiosource/ 
+
+module:
+	make clean -C mypingpong
+	make -C mypingpong
+	
+
 
 

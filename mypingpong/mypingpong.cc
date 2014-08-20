@@ -202,95 +202,79 @@ void pong_thread (void)
 #define ROUNDS (1000)
 #define FACTOR      (8)
 #define MRSTEPPING  1
-#define ITERATIONS 1000
+#define ITERATIONS 10
 
 void ping_thread (void)
 {
-    int i = 0;
-    unsigned long avgcycles;
-    unsigned long avginstrs;
-    unsigned long avgus;
+    int counter = 0, untyped = 0;
+    unsigned long avgcycles = 0;
+    unsigned long avginstrs = 0;
+    unsigned long avgus = 0;
 
     L4_Word64_t cycles1, cycles2;
     L4_Clock_t usec1, usec2;
     L4_Word_t instrs1, instrs2;
-#ifdef PERFMON
-    L4_Word64_t cnt0, cnt1;
-#endif
-    bool go = true;
 
     // Wait for pong thread to come up
     L4_Receive (pong_tid);
     L4_ThreadId_t pong_ltid = L4_LocalId (pong_tid);
 
-    while (i < ITERATIONS)
+    printf("Benchmarking %s IPC...\n",
+           MIGRATE  ? "XCPU" :
+           INTER_AS ? "Inter-AS" : "Intra-AS");
+
+    for (int counter = 0; counter< ITERATIONS; counter++)
     {
-        printf("Benchmarking %s IPC...\n",
-               MIGRATE  ? "XCPU" :
-               INTER_AS ? "Inter-AS" : "Intra-AS");
 
-        for (int j = 0; j < 64; j += MRSTEPPING)
+        L4_Word_t i = ROUNDS;
+        i /= FACTOR;
+        i *= FACTOR;
+
+        cycles1 = read_cycles ();
+        usec1 = L4_SystemClock ();
+        instrs1 = read_instrs ();
+        if (LIPC)
         {
-            L4_Word_t i = ROUNDS;
-            i /= FACTOR;
-            i *= FACTOR;
+            pingpong_lipc (pong_tid, untyped);
 
-#ifdef PERFMON
-            rdpmc (0, &cnt0);
-#endif
-            cycles1 = read_cycles ();
-            usec1 = L4_SystemClock ();
-            instrs1 = read_instrs ();
-            if (LIPC)
-                for (; i; i -= FACTOR)
-                {
-                    for (int k = 0; k < FACTOR; k++)
-                        pingpong_lipc (pong_tid, j);
-                }
-            else
-                for (; i; i -= FACTOR)
-                {
-                    for (int k = 0; k < FACTOR; k++)
-                    {
-                        //debug_printf( "ping ipc\n");
-                        pingpong_ipc (pong_tid, j);
-                    }
-                }
-            cycles2 = read_cycles ();
-            usec2 = L4_SystemClock ();
-            instrs2 = read_instrs ();
-
-#ifdef PERFMON
-            //rdpmc (0, &cnt1);
-            //printf ("rdpmc(0) = %ld\n", cnt0);
-            //printf ("rdpmc(1) = %ld\n", cnt1);
-            //printf ("events: %ld.%02ld\n",
-              //      (((long) (cnt1 - cnt0) ) / (ROUNDS * 2)),
-                //    (((long) (cnt1 - cnt0) * 100) / (ROUNDS * 2)) % 100);
-#endif
-            avgcycles += ((unsigned long)(cycles2 - cycles1)) / (ROUNDS * 2)+((unsigned long)(usec2 - usec1).raw) / (ROUNDS * 2);
-			avgus = ((unsigned long)(usec2 - usec1).raw) / (ROUNDS * 2) + (((unsigned long)(usec2 - usec1).raw) * 100 / (ROUNDS * 2)) % 100
-			avginstrs = ((unsigned long)(instrs2 - instrs1)) / (ROUNDS * 2)
-            printf ("IPC (%2u MRs): %lu.%02lu cycles, %lu.%02luus, %lu.%02lu instrs\n", j,
-                    ((unsigned long)(cycles2 - cycles1)) / (ROUNDS * 2),
-                    (((unsigned long)(cycles2 - cycles1)) * 100 / (ROUNDS * 2)) % 100,
-                    ((unsigned long)(usec2 - usec1).raw) / (ROUNDS * 2),
-                    (((unsigned long)(usec2 - usec1).raw) * 100 / (ROUNDS * 2)) % 100,
-                    ((unsigned long)(instrs2 - instrs1)) / (ROUNDS * 2),
-                    (((unsigned long)(instrs2 - instrs1)) * 100 / (ROUNDS * 2)) % 100);
+        }
+        else
+        {
+            //debug_printf( "ping ipc\n");
+            pingpong_ipc (pong_tid, untyped);
         }
 
+
+        cycles2 = read_cycles ();
+        usec2 = L4_SystemClock ();
+        instrs2 = read_instrs ();
+        avgcycles += ((unsigned long)(cycles2 - cycles1));
+        avgus += ((unsigned long)(usec2 - usec1).raw);
+        avginstrs += ((unsigned long)(instrs2 - instrs1));
+        printf ("IPC : %lu cycles, %lu us, %lu instrs\n",
+            ((unsigned long)(avgcycles)),
+            ((unsigned long)(avgus)) ,
+            ((unsigned long)(avginstrs)));
+
     }
+    printf ("IPC : %lu cycles, %lu us, %lu instrs\n",
+            ((unsigned long)(avgcycles)) / (ITERATIONS),
+            ((unsigned long)(avgus)) / (ITERATIONS),
+            ((unsigned long)(avginstrs)) / (ITERATIONS));
 
     // Tell master that we're finished
     L4_Set_MsgTag (L4_Niltag);
     L4_Send (roottid);
-    i++;
+    
     for (;;)
         L4_Sleep (L4_Never);
 
     /* NOTREACHED */
+
 }
+
+
+
 
 
 static void send_startup_ipc (L4_ThreadId_t tid, L4_Word_t ip, L4_Word_t sp)
