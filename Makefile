@@ -5,7 +5,7 @@ MODULE = mypingpong
 CONFIGOPTIONS = 
 #MODULEPATH = l4ka-pistachio/x86-x36-user-build/apps/bench/
 
-all: clean module config image qemu
+all: clean module config image
 
 
 image:
@@ -41,7 +41,8 @@ module:
 	make -C mypingpong
 
 qemu:
-	qemu pistachio.img
+	make
+	qemu-system-i386 $(IMGFILE)
 
 clean:
 	make clean -C mypingpong
