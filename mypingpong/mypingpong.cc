@@ -37,6 +37,7 @@
 #include <l4/kdebug.h>
 #include <l4io.h>
 #include <l4/arch.h>
+#include <l4/sigma0.h>
 
 #if defined(L4_ARCH_POWERPC64)
 extern long _start_pager;
@@ -55,10 +56,17 @@ extern long _start_pong_thread;
 #define PING_PONG_PRIO      128
 #define SMALLSPACE_SIZE     16
 
+//memory allocation
+#define KB(x) (x*1024)
+#define MB(x) (x*1024*1024)
+#define GB(x) (x*1024*1024*1024)
+
 int MIGRATE = 0;
 int INTER_AS = 1;
 int SMALL_AS = 0;
 int LIPC = 0;
+int MEMORY = 0;
+int ALL = 1;
 int PRINT_TABLE = 0;
 
 int hsched;
@@ -78,7 +86,6 @@ L4_Word_t utcb_size;
 #define UTCB(x) ((void*)(L4_Address(utcb_area) + (x) * utcb_size))
 #define NOUTCB  ((void*)-1)
 
-
 static L4_Word_t page_bits;
 
 extern "C" void memset (char *p, char c, int size)
@@ -91,7 +98,7 @@ extern "C" void memset (char *p, char c, int size)
 void ping_thread (void);
 void pong_thread (void);
 void menu_options(char);
-
+void alloc_mem (void);
 
 /*
  * Architecture dependent function stubs.
@@ -208,7 +215,7 @@ void pong_thread (void)
 
 void ping_thread (void)
 {
-    int j = 0, untyped = 0, i = 0;
+    int j = 0, untyped = 0;
     L4_Word64_t avgcycles = 0;
     L4_Word64_t avginstrs = 0;
     L4_Word64_t avgus = 0;
@@ -220,31 +227,13 @@ void ping_thread (void)
     // Wait for pong thread to come up
     L4_Receive (pong_tid);
     L4_ThreadId_t pong_ltid = L4_LocalId (pong_tid);
-
-    printf("Benchmarking %s IPC...\n",
-           MIGRATE  ? "XCPU" :
-           INTER_AS ? "Inter-AS" : "Intra-AS");
-    for (; j < ITERATIONS; j++)
+    if (MEMORY)
     {
-
-        L4_Word_t i = ROUNDS;
-        i /= FACTOR;
-        i *= FACTOR;
-
         cycles1 = read_cycles ();
         usec1 = L4_SystemClock ();
         instrs1 = read_instrs ();
-        if (LIPC)
-        {
-            pingpong_lipc (pong_tid, untyped);
 
-        }
-        else
-        {
-            //debug_printf( "ping ipc\n");
-            pingpong_ipc (pong_tid, untyped);
-        }
-
+        alloc_mem();
 
         cycles2 = read_cycles ();
         usec2 = L4_SystemClock ();
@@ -253,14 +242,57 @@ void ping_thread (void)
         avgcycles += cycles2 - cycles1;
         avgus += (usec2 - usec1).raw;
         avginstrs += instrs2 - instrs1;
-        if (DEBUG && j <= 20)
+    }
+    else
+    {
+        printf("Benchmarking %s IPC...\n",
+               MIGRATE  ? "XCPU" :
+               INTER_AS ? "Inter-AS" : "Intra-AS");
+        for (; j < ITERATIONS; j++)
         {
-            printf ("IPC : %lu cycles, %lu us, %lu instrs\n",
-                    ((unsigned long)(cycles2 - cycles1)),
-                    ((unsigned long)((usec2 - usec1).raw)) ,
-                    ((unsigned long)(instrs2 - instrs1)));
-        }
 
+            L4_Word_t i = ROUNDS;
+            i /= FACTOR;
+            i *= FACTOR;
+
+
+            if (LIPC)
+            {
+                cycles1 = read_cycles ();
+                usec1 = L4_SystemClock ();
+                instrs1 = read_instrs ();
+                pingpong_lipc (pong_tid, untyped);
+                cycles2 = read_cycles ();
+                usec2 = L4_SystemClock ();
+                instrs2 = read_instrs ();
+            }
+            else
+            {
+                cycles1 = read_cycles ();
+                usec1 = L4_SystemClock ();
+                instrs1 = read_instrs ();
+                //debug_printf( "ping ipc\n");
+                pingpong_ipc (pong_tid, untyped);
+                cycles2 = read_cycles ();
+                usec2 = L4_SystemClock ();
+                instrs2 = read_instrs ();
+            }
+
+
+
+
+            avgcycles += cycles2 - cycles1;
+            avgus += (usec2 - usec1).raw;
+            avginstrs += instrs2 - instrs1;
+            if (DEBUG && j <= 20)
+            {
+                printf ("IPC : %lu cycles, %lu us, %lu instrs\n",
+                        ((unsigned long)(cycles2 - cycles1)),
+                        ((unsigned long)((usec2 - usec1).raw)) ,
+                        ((unsigned long)(instrs2 - instrs1)));
+            }
+
+        }
     }
     printf ("Average IPC : %lu cycles, %lu us, %lu instrs\n",
             ((unsigned long)(avgcycles)) / (ITERATIONS),
@@ -363,7 +395,7 @@ int main (void)
     NumProcessors = L4_NumProcessors(kip);
     int nextoption = 0;
     char c;
-
+    printf("\nNum Processors: %d\n\n", NumProcessors);
     /* Me and sigma0 */
     roottid = L4_Myself();
     s0tid = L4_GlobalId (kip->ThreadInfo.X.UserBase, 1);
@@ -453,10 +485,14 @@ int main (void)
     {
         bool printmenu = true;
 
+        if (ALL)
+        {
+            nextoption = 0;
+        }
 
         for (;;)
         {
-            if ((printmenu && DEBUG) || nextoption < 0)
+            if ((printmenu && DEBUG) )
             {
                 //printf("\nL4_NumProcessors: %d\n", L4_NumProcessors(kip));
                 //printf("L4_NumMemoryDescriptors: %d\n", L4_NumMemoryDescriptors(kip));
@@ -507,95 +543,69 @@ int main (void)
 
 
         }
-
-        if (INTER_AS)
+        if (ALL)
         {
-            L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0],
-                              L4_nilthread, UTCB(0));
-            L4_ThreadControl (pong_tid, pong_tid, scheduler_tid[0],
-                              L4_nilthread, UTCB(1));
-            L4_SpaceControl (ping_tid, 0, kip_area, utcb_area, L4_nilthread,
-                             &control);
-            L4_SpaceControl (pong_tid, 0, kip_area, utcb_area, L4_nilthread,
-                             &control);
-            L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], pager_tid,
-                              NOUTCB);
-            L4_ThreadControl (pong_tid, pong_tid, scheduler_tid[0], pager_tid,
-                              NOUTCB);
-
-#if defined(L4_ARCH_IA32)
-            if (SMALL_AS)
-            {
-                L4_SpaceControl (ping_tid, (1UL << 31) |
-                                 L4_SmallSpace (0, SMALLSPACE_SIZE),
-                                 L4_Nilpage, L4_Nilpage, L4_nilthread,
-                                 &control);
-                L4_SpaceControl (pong_tid, (1UL << 31) |
-                                 L4_SmallSpace (SMALLSPACE_SIZE,
-                                                SMALLSPACE_SIZE),
-                                 L4_Nilpage, L4_Nilpage, L4_nilthread,
-                                 &control);
-            }
-#endif /* defined(L4_ARCH_IA32) */
+            printf("Printing all:\n");
         }
         else
         {
-            // Intra-as -- put both into the same space
-            L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], L4_nilthread,
-                              UTCB(0));
-            L4_SpaceControl (ping_tid, 0, kip_area, utcb_area, L4_nilthread,
-                             &control);
-            L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], pager_tid,
-                              NOUTCB);
-            L4_ThreadControl (pong_tid, ping_tid, scheduler_tid[0], pager_tid,
-                              UTCB(1));
-        }
+            if (INTER_AS)
+            {
+                L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0],
+                                  L4_nilthread, UTCB(0));
+                L4_ThreadControl (pong_tid, pong_tid, scheduler_tid[0],
+                                  L4_nilthread, UTCB(1));
+                L4_SpaceControl (ping_tid, 0, kip_area, utcb_area, L4_nilthread,
+                                 &control);
+                L4_SpaceControl (pong_tid, 0, kip_area, utcb_area, L4_nilthread,
+                                 &control);
+                L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], pager_tid,
+                                  NOUTCB);
+                L4_ThreadControl (pong_tid, pong_tid, scheduler_tid[0], pager_tid,
+                                  NOUTCB);
 
 #if defined(L4_ARCH_IA32)
-        if (hsched)
-        {
-            L4_Set_Logid (ping_tid, 4);
-            L4_Set_Logid (pong_tid, 5);
-        }
-#endif
-
-        if (MIGRATE)
-        {
-            if (2 >= NumProcessors)
-            {
-                L4_Set_ProcessorNo (pong_tid, (L4_ProcessorNo() + 1) % 2);
-                L4_ThreadControl (pong_tid, pong_tid, scheduler_tid[1], pager_tid, NOUTCB);
-                // Send message to notify pager to startup both threads
-                L4_Clear (&msg);
-                L4_Append (&msg, START_ADDR (ping_thread));
-                L4_Append (&msg, START_ADDR (pong_thread));
-                L4_Load (&msg);
-                L4_Send (pager_tid);
-
-                L4_Receive (ping_tid);
-
-                // Kill both threads
-                L4_ThreadControl (ping_tid, L4_nilthread, L4_nilthread,
-                                  L4_nilthread, NOUTCB);
-                L4_ThreadControl (pong_tid, L4_nilthread, L4_nilthread,
-                                  L4_nilthread, NOUTCB);
+                if (SMALL_AS)
+                {
+                    L4_SpaceControl (ping_tid, (1UL << 31) |
+                                     L4_SmallSpace (0, SMALLSPACE_SIZE),
+                                     L4_Nilpage, L4_Nilpage, L4_nilthread,
+                                     &control);
+                    L4_SpaceControl (pong_tid, (1UL << 31) |
+                                     L4_SmallSpace (SMALLSPACE_SIZE,
+                                                    SMALLSPACE_SIZE),
+                                     L4_Nilpage, L4_Nilpage, L4_nilthread,
+                                     &control);
+                }
+#endif /* defined(L4_ARCH_IA32) */
             }
             else
             {
-                for (int i = 2; i < NumProcessors; i++)
+                // Intra-as -- put both into the same space
+                L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], L4_nilthread,
+                                  UTCB(0));
+                L4_SpaceControl (ping_tid, 0, kip_area, utcb_area, L4_nilthread,
+                                 &control);
+                L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], pager_tid,
+                                  NOUTCB);
+                L4_ThreadControl (pong_tid, ping_tid, scheduler_tid[0], pager_tid,
+                                  UTCB(1));
+            }
+
+#if defined(L4_ARCH_IA32)
+            if (hsched)
+            {
+                L4_Set_Logid (ping_tid, 4);
+                L4_Set_Logid (pong_tid, 5);
+            }
+#endif
+
+            if (MIGRATE)
+            {
+                if (2 >= NumProcessors)
                 {
-                    printf("Migrating from processor %d to %d\n", 1, i);
-                    // MIGRATE -- two spaces. loop through each core against single core.
-                    L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], L4_nilthread,
-                                      UTCB(0));
-                    L4_SpaceControl (ping_tid, 0, kip_area, utcb_area, L4_nilthread,
-                                     &control);
-                    L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], pager_tid,
-                                      NOUTCB);
-                    L4_Set_ProcessorNo (pong_tid, (i) % NumProcessors);
+                    L4_Set_ProcessorNo (pong_tid, (L4_ProcessorNo() + 1) % 2);
                     L4_ThreadControl (pong_tid, pong_tid, scheduler_tid[1], pager_tid, NOUTCB);
-
-
                     // Send message to notify pager to startup both threads
                     L4_Clear (&msg);
                     L4_Append (&msg, START_ADDR (ping_thread));
@@ -611,30 +621,104 @@ int main (void)
                     L4_ThreadControl (pong_tid, L4_nilthread, L4_nilthread,
                                       L4_nilthread, NOUTCB);
                 }
+                else
+                {
+                    for (int i = 2; i < NumProcessors; i++)
+                    {
+                        printf("Migrating from processor %d to %d\n", 1, i);
+                        // MIGRATE -- two spaces. loop through each core against single core.
+                        L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], L4_nilthread,
+                                          UTCB(0));
+                        L4_SpaceControl (ping_tid, 0, kip_area, utcb_area, L4_nilthread,
+                                         &control);
+                        L4_ThreadControl (ping_tid, ping_tid, scheduler_tid[0], pager_tid,
+                                          NOUTCB);
+                        L4_Set_ProcessorNo (pong_tid, (i) % NumProcessors);
+                        L4_ThreadControl (pong_tid, pong_tid, scheduler_tid[1], pager_tid, NOUTCB);
+
+
+                        // Send message to notify pager to startup both threads
+                        L4_Clear (&msg);
+                        L4_Append (&msg, START_ADDR (ping_thread));
+                        L4_Append (&msg, START_ADDR (pong_thread));
+                        L4_Load (&msg);
+                        L4_Send (pager_tid);
+
+                        L4_Receive (ping_tid);
+
+                        // Kill both threads
+                        L4_ThreadControl (ping_tid, L4_nilthread, L4_nilthread,
+                                          L4_nilthread, NOUTCB);
+                        L4_ThreadControl (pong_tid, L4_nilthread, L4_nilthread,
+                                          L4_nilthread, NOUTCB);
+                    }
+                }
             }
+            else
+            {
+                // Send message to notify pager to startup both threads
+                L4_Clear (&msg);
+                L4_Append (&msg, START_ADDR (ping_thread));
+                L4_Append (&msg, START_ADDR (pong_thread));
+                L4_Load (&msg);
+                L4_Send (pager_tid);
+
+                L4_Receive (ping_tid);
+
+                // Kill both threads
+                L4_ThreadControl (ping_tid, L4_nilthread, L4_nilthread,
+                                  L4_nilthread, NOUTCB);
+                L4_ThreadControl (pong_tid, L4_nilthread, L4_nilthread,
+                                  L4_nilthread, NOUTCB);
+            }
+
         }
-        else
-        {
-            // Send message to notify pager to startup both threads
-            L4_Clear (&msg);
-            L4_Append (&msg, START_ADDR (ping_thread));
-            L4_Append (&msg, START_ADDR (pong_thread));
-            L4_Load (&msg);
-            L4_Send (pager_tid);
-
-            L4_Receive (ping_tid);
-
-            // Kill both threads
-            L4_ThreadControl (ping_tid, L4_nilthread, L4_nilthread,
-                              L4_nilthread, NOUTCB);
-            L4_ThreadControl (pong_tid, L4_nilthread, L4_nilthread,
-                              L4_nilthread, NOUTCB);
-        }
-
     }
 
     for (;;)
         L4_KDB_Enter ("EOW");
+}
+
+
+
+void alloc_mem ()
+{
+
+    L4_Word_t tsize = 0;
+
+    for (L4_Word_t s = sizeof (L4_Word_t) * 8 - 1; s >= 10; s--)
+    {
+        L4_Fpage_t f;
+        int n = -1;
+
+        do
+        {
+            f = L4_Sigma0_GetAny (L4_nilthread, s, L4_CompleteAddressSpace);
+            n++;
+        }
+        while (! L4_IsNilFpage (f));
+
+        L4_Word_t size = n * (1UL << s);
+        tsize += size;
+
+        if (n)
+            printf ("Allocated %d pages of %3ld%cB (log2size %2ld) [%ld%cB]\n",
+                    n,
+                    s >= 30 ? 1UL << (s - 30) :
+                    s >= 20 ? 1UL << (s - 20) : 1UL << (s - 10),
+                    s >= 30 ? 'G' : s >= 20 ? 'M' : 'K',
+                    s,
+                    size >= GB(1) ? size / GB(1) :
+                    size >= MB(1) ? size / MB(1) : size / KB(1),
+                    size >= GB(1) ? 'G' : size >= MB(1) ? 'M' : 'K');
+    }
+
+    // Avoid using floating point
+    printf ("\nTotal memory: %ld.%ldGB | %ld.%ldMB | %ldKB\n",
+            tsize / GB(1), ((tsize * 100) / GB(1)) % 100,
+            tsize / MB(1), ((tsize * 100) / MB(1)) % 100,
+            tsize / KB(1));
+
 }
 
 void menu_options(char c)
@@ -645,6 +729,8 @@ void menu_options(char c)
         MIGRATE = 0;
         SMALL_AS = 0;
         LIPC = 0;
+        MEMORY = 0;
+        ALL = 0;
     }
     if (c == '2')
     {
@@ -652,6 +738,8 @@ void menu_options(char c)
         MIGRATE = 0;
         SMALL_AS = 0;
         LIPC = 0;
+        MEMORY = 0;
+        ALL = 0;
     }
     if (c == '3')
     {
@@ -659,6 +747,8 @@ void menu_options(char c)
         MIGRATE = 0;
         SMALL_AS = 0;
         LIPC = 1;
+        MEMORY = 0;
+        ALL = 0;
     }
     if (c == '4')
     {
@@ -666,6 +756,27 @@ void menu_options(char c)
         MIGRATE = 1;
         SMALL_AS = 0;
         LIPC = 0;
+        MEMORY = 0;
+        ALL = 0;
+    }
+    if (c == '5')
+    {
+        INTER_AS = 0;
+        MIGRATE = 1;
+        SMALL_AS = 0;
+        LIPC = 0;
+        MEMORY = 1;
+        ALL = 0;
+    }
+
+    if (c == 'a')
+    {
+        INTER_AS = 0;
+        MIGRATE = 0;
+        SMALL_AS = 0;
+        LIPC = 0;
+        MEMORY = 0;
+        ALL = 1;
     }
 
 

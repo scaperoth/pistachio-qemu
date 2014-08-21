@@ -1,6 +1,6 @@
 /* Automatically generated, don't edit */
 /* Generated on: ubuntu */
-/* At: Thu, 14 Aug 2014 15:58:04 +0000 */
+/* At: Thu, 21 Aug 2014 19:52:30 +0000 */
 /* Linux version 3.13.0-24-generic (buildd@roseapple) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #46-Ubuntu SMP Thu Apr 10 19:08:14 UTC 2014 */
 
 /* Pistachio Kernel Configuration System */
@@ -40,8 +40,8 @@
 
 /* Kernel */
 #undef  CONFIG_EXPERIMENTAL
-#undef  CONFIG_IPC_FASTPATH
-#define CONFIG_DEBUG 1
+#define CONFIG_IPC_FASTPATH 1
+#undef  CONFIG_DEBUG
 #undef  CONFIG_DEBUG_SYMBOLS
 #undef  CONFIG_SPIN_WHEELS
 #undef  CONFIG_NEW_MDB
@@ -52,24 +52,10 @@
 /* Debugger */
 
 /* Kernel Debugger Console */
-#define CONFIG_KDB_CONS_COM 1
-#define CONFIG_KDB_COMPORT 0x0
-#define CONFIG_KDB_COMSPEED 115200
-#undef  CONFIG_KDB_CONS_KBD
-#define CONFIG_KDB_BOOT_CONS 0
+#undef  CONFIG_KDB_CONS_COM
 
-#undef  CONFIG_KDB_DISAS
-#undef  CONFIG_KDB_ON_STARTUP
-#undef  CONFIG_KDB_BREAKIN
-#undef  CONFIG_KDB_INPUT_HLT
-#undef  CONFIG_KDB_NO_ASSERTS
-
-/* Trace Settings */
-#undef  CONFIG_VERBOSE_INIT
-#undef  CONFIG_TRACEPOINTS
-#undef  CONFIG_KMEM_TRACE
-#undef  CONFIG_TRACEBUFFER
-
+#undef  CONFIG_KDB_BREAKIN_BREAK
+#undef  CONFIG_KDB_BREAKIN_ESCAPE
 
 
 /* Code Generator Options */
