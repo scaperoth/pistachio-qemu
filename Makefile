@@ -38,14 +38,14 @@ config:
 	cp -rf $(MODULE)/$(MODULE) pistachiosource/ 
 
 module:
-	make -C mypingpong
+	make -C $(MODULE)
 
 qemu:
 	make
 	qemu-system-i386 $(IMGFILE)
 
 clean:
-	make clean -C mypingpong
+	make clean -C $(MODULE)
 	rm -f $(IMGFILE) mtoolsrc bmap
 
 

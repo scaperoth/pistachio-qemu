@@ -193,7 +193,7 @@ ASMFLAGS += $(ASMFLAGS_$(PLATFORM)) $(ASMFLAGS_$(ARCH)) $(ASMFLAGS_$(CPU))
 
 LIBDIRS += $(LIBGCCDIR)
 LIBS += $(LIBS_$(ARCH))
-LDFLAGS += -static -O3 $(LDFLAGS_$(ARCH)) $(addprefix -L,$(LIBDIRS))
+LDFLAGS += -static -O2 $(LDFLAGS_$(ARCH)) $(addprefix -L,$(LIBDIRS))
 KLDFLAGS += $(LDFLAGS)  $(KLDFLAGS_$(ARCH))
 LDSCRIPT = $(SRCDIR)/src/platform/$(PLATFORM)/linker.lds
 

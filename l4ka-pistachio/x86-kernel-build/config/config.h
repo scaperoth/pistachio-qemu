@@ -1,6 +1,6 @@
 /* Automatically generated, don't edit */
 /* Generated on: ubuntu */
-/* At: Thu, 21 Aug 2014 19:52:30 +0000 */
+/* At: Mon, 25 Aug 2014 16:48:12 +0000 */
 /* Linux version 3.13.0-24-generic (buildd@roseapple) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #46-Ubuntu SMP Thu Apr 10 19:08:14 UTC 2014 */
 
 /* Pistachio Kernel Configuration System */
@@ -20,9 +20,9 @@
 
 /* Processor Type */
 #undef  CONFIG_CPU_X86_I486
-#define CONFIG_CPU_X86_I586 1
+#undef  CONFIG_CPU_X86_I586
 #undef  CONFIG_CPU_X86_I686
-#undef  CONFIG_CPU_X86_P4
+#define CONFIG_CPU_X86_P4 1
 #undef  CONFIG_CPU_X86_K8
 #undef  CONFIG_CPU_X86_C3
 #undef  CONFIG_CPU_X86_SIMICS
@@ -33,20 +33,38 @@
 
 
 /* Miscellaneous */
-#undef  CONFIG_IOAPIC
+#define CONFIG_IOAPIC 1
+#define CONFIG_MAX_IOAPICS 2
+#define CONFIG_APIC_TIMER_TICK 1000
 
-#undef  CONFIG_SMP
+#define CONFIG_SMP 1
+#define CONFIG_SMP_MAX_PROCS 40
+#define CONFIG_SMP_IDLE_POLL 1
 
 
 /* Kernel */
 #undef  CONFIG_EXPERIMENTAL
+
+/* Experimental Features */
+#undef  CONFIG_X_PAGER_EXREGS
+#undef  CONFIG_X_CTRLXFER_MSG
+#undef  CONFIG_X_X86_HVM
+#undef  CONFIG_X_EVT_LOGGING
+
+/* Kernel scheduling policy */
+#undef  CONFIG_SCHED_RR
+#undef  CONFIG_X_SCHED_HS
+
+
 #define CONFIG_IPC_FASTPATH 1
 #undef  CONFIG_DEBUG
 #undef  CONFIG_DEBUG_SYMBOLS
+#undef  CONFIG_PERFMON
 #undef  CONFIG_SPIN_WHEELS
 #undef  CONFIG_NEW_MDB
-#undef  CONFIG_STATIC_TCBS
+#define CONFIG_STATIC_TCBS 1
 #undef  CONFIG_X86_SMALL_SPACES
+#undef  CONFIG_X86_IO_FLEXPAGES
 
 
 /* Debugger */
@@ -66,12 +84,12 @@
 #define CONFIG_X86_PSE 1
 #undef  CONFIG_BIGENDIAN
 #undef  CONFIG_PPC_MMU_TLB
-#undef  CONFIG_X86_SYSENTER
-#undef  CONFIG_X86_PGE
-#undef  CONFIG_X86_FXSR
+#define CONFIG_X86_SYSENTER 1
+#define CONFIG_X86_PGE 1
+#define CONFIG_X86_FXSR 1
 #define CONFIG_IS_32BIT 1
-#undef  CONFIG_X86_HTT
-#undef  CONFIG_X86_PAT
+#define CONFIG_X86_HTT 1
+#define CONFIG_X86_PAT 1
 #undef  CONFIG_PPC_BOOKE
 #undef  CONFIG_IS_64BIT
 #undef  CONFIG_MULTI_ARCHITECTURE
@@ -80,7 +98,7 @@
 #undef  CONFIG_PPC_TLB_INV_LOCAL
 #undef  CONFIG_PPC_CACHE_ICBI_LOCAL
 #undef  CONFIG_X86_SMALL_SPACES_GLOBAL
-#undef  CONFIG_X86_HVM
+#define CONFIG_X86_HVM 1
 #undef  CONFIG_PPC_MMU_SEGMENTS
 #define CONFIG_X86_TSC 1
 /* That's all, folks! */
