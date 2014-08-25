@@ -2,17 +2,16 @@
 #+EMAIL: mscapero@gwu.edu
 #+STARTUP: showall
      
-***General***:       
+*General:       
 To run this program simply run "make qemu"      
          
 from the console to clean, build the image, and run qemu.      
 To only clean and build a new image, run "make"         
       
-Image created using Ubuntu's "Disk Image Writer"     
+Bootable Image created using Ubuntu's "Disk Image Writer"     
      
-****New Build using L4ka pistachio code repo       
-    
-	* Unzip folder      
+*New Build Using This Library and L4ka Pistachio Code       
+     
 	* in the "kernel/" folder, run "make BUILDDIR=$(pwd)/../x86-kernel-build"    
 	* cd ../x86-kernel-build    
 	* make menuconfig     
