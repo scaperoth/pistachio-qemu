@@ -27,7 +27,8 @@ Bootable Image created using Ubuntu's "Disk Image Writer"
 	* ../user/configure --prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport     
 	* make     
 	* make install     
-	* (using the top level makefile from this repository) cd ../../make     
+	* cd ../../
+	* (using the top level makefile from this repository) make     
 
 
 *** Tasks
