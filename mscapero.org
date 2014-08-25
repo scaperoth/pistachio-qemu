@@ -12,23 +12,23 @@ Image created using Ubuntu's "Disk Image Writer"
      
 ****New Build using L4ka pistachio code repo       
     
-* Unzip folder      
-* in the "kernel/" folder, run "make BUILDDIR=$(pwd)/../x86-kernel-build"    
-* cd ../x86-kernel-build    
-* make menuconfig     
-* choose your options    
-* make    
-* mkdir ../x86-x32-user-build/    
-* mkdir ../x86-x32-user-install/    
-* cd ../user    
-* autoconf    
-* cd ../x86-x32-user-build/    
-* autoheader ../user/configure.in     
-* autoconfig ../user/configure.in    
-* ../user/configure --prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport     
-* make     
-* make install     
-* (using the top level makefile from this repository) cd ../../make     
+	* Unzip folder      
+	* in the "kernel/" folder, run "make BUILDDIR=$(pwd)/../x86-kernel-build"    
+	* cd ../x86-kernel-build    
+	* make menuconfig     
+	* choose your options    
+	* make    
+	* mkdir ../x86-x32-user-build/    
+	* mkdir ../x86-x32-user-install/    
+	* cd ../user    
+	* autoconf    
+	* cd ../x86-x32-user-build/    
+	* autoheader ../user/configure.in     
+	* autoconfig ../user/configure.in    
+	* ../user/configure --prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport     
+	* make     
+	* make install     
+	* (using the top level makefile from this repository) cd ../../make     
 
 
 *** Tasks
