@@ -1,14 +1,32 @@
 IMGFILE = pistachio.img
 ROOTFOLDER = pistachiosource
-DRIVE = hd1
+DRIVE = hd0
 MODULE = mypingpong
 CONFIGOPTIONS = 
 #MODULEPATH = l4ka-pistachio/x86-x36-user-build/apps/bench/
 
-all: clean module config image
+all: clean module config image-no-root
 
 
-image:
+image-root:
+	mkdir -p /mnt/fda
+
+	dd if=/dev/zero of=$(IMGFILE) bs=512 count=3200
+
+	/sbin/losetup /dev/loop0 $(IMGFILE)
+	/sbin/mke2fs /dev/loop0
+	mount /dev/loop0 -o loop /mnt/fda
+	chmod 777 /mnt/fda
+	cp -aR $(ROOTFOLDER)/* /mnt/fda
+	printf "umount /mnt/fda \n"
+
+	printf "root ($(DRIVE)) \n setup ($(DRIVE))\n quit\n" | /usr/sbin/grub --batch --device-map=/dev/null 
+
+	/sbin/losetup -d /dev/loop0
+
+	rm -f Makefile~
+
+image-no-root:
 	
 	dd if=/dev/zero of=$(IMGFILE) bs=512 count=2880
 	echo 'drive a: file="$(IMGFILE)"'> mtoolsrc
@@ -25,9 +43,10 @@ image:
 	MTOOLSRC=./mtoolsrc mcopy $(ROOTFOLDER)/$(MODULE) a:/
 
 	echo "($(DRIVE))  $(IMGFILE)" > bmap
-	printf "root ($(DRIVE),0) \n setup ($(DRIVE),0)\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
+	printf "root ($(DRIVE)) \n setup ($(DRIVE))\n quit\n" | /usr/sbin/grub --batch --device-map=bmap
 	rm -f Makefile~
 	rm -f mtoolsrc bmap
+
 
 
 config:

@@ -1,4 +1,4 @@
-root (hd1,0)
+root (fd0)
 default=0
 timeout=3
 #serial --port=0x3f8 --speed=115200
