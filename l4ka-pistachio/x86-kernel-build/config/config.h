@@ -1,6 +1,6 @@
 /* Automatically generated, don't edit */
 /* Generated on: ubuntu */
-/* At: Mon, 25 Aug 2014 16:48:12 +0000 */
+/* At: Mon, 25 Aug 2014 18:42:32 +0000 */
 /* Linux version 3.13.0-24-generic (buildd@roseapple) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #46-Ubuntu SMP Thu Apr 10 19:08:14 UTC 2014 */
 
 /* Pistachio Kernel Configuration System */
@@ -39,29 +39,17 @@
 
 #define CONFIG_SMP 1
 #define CONFIG_SMP_MAX_PROCS 40
-#define CONFIG_SMP_IDLE_POLL 1
+#undef  CONFIG_SMP_IDLE_POLL
 
 
 /* Kernel */
 #undef  CONFIG_EXPERIMENTAL
-
-/* Experimental Features */
-#undef  CONFIG_X_PAGER_EXREGS
-#undef  CONFIG_X_CTRLXFER_MSG
-#undef  CONFIG_X_X86_HVM
-#undef  CONFIG_X_EVT_LOGGING
-
-/* Kernel scheduling policy */
-#undef  CONFIG_SCHED_RR
-#undef  CONFIG_X_SCHED_HS
-
-
 #define CONFIG_IPC_FASTPATH 1
 #undef  CONFIG_DEBUG
 #undef  CONFIG_DEBUG_SYMBOLS
 #undef  CONFIG_PERFMON
-#undef  CONFIG_SPIN_WHEELS
-#undef  CONFIG_NEW_MDB
+#define CONFIG_SPIN_WHEELS 1
+#define CONFIG_NEW_MDB 1
 #define CONFIG_STATIC_TCBS 1
 #undef  CONFIG_X86_SMALL_SPACES
 #undef  CONFIG_X86_IO_FLEXPAGES

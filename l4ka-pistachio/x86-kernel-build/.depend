@@ -562,7 +562,9 @@
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/tcb.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/tss.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/logging.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mapping.h
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb_mem.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/mdb.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/mdb.h
 .depend src/generic/mapping_alloc.o: /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mapping_alloc.cc \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/x86-kernel-build/config/config.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/macros.h \
@@ -597,8 +599,9 @@
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/generic-archfpage.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/kdb/tracepoints.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/kdb/linker_set.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/kdb/tracebuffer.h
-.depend src/generic/mapping.o: /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mapping.cc \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/kdb/tracebuffer.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb.h
+.depend src/generic/mdb.o: /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb.cc \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/x86-kernel-build/config/config.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/macros.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/config.h \
@@ -611,35 +614,63 @@
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/types.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/types.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/types.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/sync.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/sync.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/mdb.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/mdb.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/kdb/tracepoints.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/debug.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/debug.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/trapgate.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/trapgate.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/atomic.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mapping.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/kdb/linker_set.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/kdb/tracebuffer.h
+.depend src/generic/mdb_mem.o: /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb_mem.cc \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/x86-kernel-build/config/config.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/macros.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/config.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/config.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/config.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/config.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x86.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/x86.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/offsets.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/types.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/types.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/types.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb_mem.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/mdb.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/mdb.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/linear_ptab.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/pgent.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/kmemory.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/sync.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/sync.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/debug.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/debug.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/trapgate.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/trapgate.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/atomic.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/hwspace.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/mmu.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/cpu.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/cpu.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/arch/x86/x32/ptab.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/space.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/space.h \
+ /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/types.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/fpage.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/fpage.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/io_fpage.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/generic-archfpage.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/linear_ptab.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/space.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/glue/v4-x86/x32/space.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/types.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/thread.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/kernelinterface.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/memregion.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/memdesc.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/procdesc.h \
- /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/generic/mdb.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/tcb.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/cpu.h \
  /home/mscapero/Desktop/pistachio-qemu/l4ka-pistachio/kernel/src/api/v4/queuestate.h \

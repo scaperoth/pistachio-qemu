@@ -1,6 +1,6 @@
 /* Automatically generated, don't edit */
 /* Generated on: ubuntu */
-/* At: Mon, 25 Aug 2014 16:41:44 +0000 */
+/* At: Mon, 25 Aug 2014 18:42:25 +0000 */
 /* Linux version 3.13.0-24-generic (buildd@roseapple) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #46-Ubuntu SMP Thu Apr 10 19:08:14 UTC 2014 */
 
 /* Pistachio Kernel Configuration System */
@@ -38,33 +38,20 @@
 #define CONFIG_APIC_TIMER_TICK 1000
 
 #define CONFIG_SMP 1
-#define CONFIG_SMP_MAX_PROCS 4
-#define CONFIG_SMP_IDLE_POLL 1
+#define CONFIG_SMP_MAX_PROCS 40
+#undef  CONFIG_SMP_IDLE_POLL
 
 
 /* Kernel */
-#define CONFIG_EXPERIMENTAL 1
-
-/* Experimental Features */
-#define CONFIG_X_PAGER_EXREGS 1
-#define CONFIG_X_CTRLXFER_MSG 1
-#define CONFIG_X_X86_HVM 1
-#undef  CONFIG_X_EVT_LOGGING
-
-/* Kernel scheduling policy */
-#define CONFIG_SCHED_RR 1
-#undef  CONFIG_X_SCHED_HS
-
-
+#undef  CONFIG_EXPERIMENTAL
 #define CONFIG_IPC_FASTPATH 1
 #undef  CONFIG_DEBUG
 #undef  CONFIG_DEBUG_SYMBOLS
 #undef  CONFIG_PERFMON
-#define CONFIG_SPIN_WHEELS 1
-#define CONFIG_NEW_MDB 1
-#define CONFIG_STATIC_TCBS 1
+#undef  CONFIG_SPIN_WHEELS
+#undef  CONFIG_NEW_MDB
+#undef  CONFIG_STATIC_TCBS
 #undef  CONFIG_X86_SMALL_SPACES
-#undef  CONFIG_X86_IO_FLEXPAGES
 
 
 /* Debugger */

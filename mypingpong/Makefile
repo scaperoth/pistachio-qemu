@@ -40,7 +40,7 @@ PROGRAM_DEPS=	$(top_builddir)/lib/l4/libl4.a \
 		$(top_builddir)/lib/io/libio.a
 
 amd64_SRCS=	pingpong-amd64-32.cc
-SRCS=		crt0-$(ARCH).S mypingpong.cc $($(ARCH)_SRCS)
+SRCS=		crt0-$(ARCH).S mypingpong.cc $($(ARCH)_SRCS) 
 
 LIBS+=		-ll4 -lio
 LDFLAGS+=	-Ttext=$(ROOTTASK_LINKBASE)
@@ -48,10 +48,10 @@ LDFLAGS+=	-Ttext=$(ROOTTASK_LINKBASE)
 CFLAGS_powerpc+=	-fno-builtin -msoft-float
 CXXFLAGS_powerpc+=	-fno-rtti
 
-CCFLAGS_pingpong-amd64-32 = $(subst -m64,-m32,$(CCFLAGS)) -m32 -fno-exceptions
+CCFLAGS_pingpong-amd64-32 = $(subst -m64,-m32,$(CCFLAGS)) -O3 -m32 -fno-exceptions
 
 pingpong-amd64-32.o: pingpong-amd64-32.cc
-	$(CC) $(CPPFLAGS) $(CCFLAGS_$*) -x c++ -c $< -o $(notdir $@)
+	$(CC) $(CPPFLAGS) $(CCFLAGS_$*) -x c++ -c $<  -O3 -o $(notdir $@)
 	$(OBJCOPY) -g -O elf64-x86-64 $(notdir $@) $(notdir $@)
 
 include $(top_srcdir)/Mk/l4.prog.mk

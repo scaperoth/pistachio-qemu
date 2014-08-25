@@ -18,5 +18,5 @@
 \
 #define __USER__               "root@ubuntu"				
 \
-#define __KERNELBUILDNO__      3				
+#define __KERNELBUILDNO__      1				
 

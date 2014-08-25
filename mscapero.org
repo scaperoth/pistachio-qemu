@@ -1,14 +1,34 @@
 #+Author: Matt Scaperoth
 #+EMAIL: mscapero@gwu.edu
 #+STARTUP: showall
-
-*General*:       
+     
+***General***:       
 To run this program simply run "make qemu"      
          
 from the console to clean, build the image, and run qemu.      
-To only clean and build a new image, run "make"    
+To only clean and build a new image, run "make"         
       
-Image created using Ubuntu's "Disk Image Writer"
+Image created using Ubuntu's "Disk Image Writer"     
+     
+****New Build using L4ka pistachio code repo       
+    
+o Unzip folder      
+o in the "kernel/" folder, run "make BUILDDIR=$(pwd)/../x86-kernel-build"    
+o cd ../x86-kernel-build    
+o make menuconfig     
+o choose your options    
+o make    
+o mkdir ../x86-x32-user-build/    
+o mkdir ../x86-x32-user-install/    
+o cd ../user    
+o autoconf    
+o cd ../x86-x32-user-build/    
+o autoheader ../user/configure.in     
+o autoconfig ../user/configure.in    
+o ../user/configure --prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport     
+o make     
+o make install     
+o (using the top level makefile from this repository) cd ../../make     
 
 
 *** Tasks

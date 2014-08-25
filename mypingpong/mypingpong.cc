@@ -211,7 +211,7 @@ void pong_thread (void)
 #define ROUNDS (100)
 #define FACTOR      (8)
 #define MRSTEPPING  1
-#define ITERATIONS (10000)
+#define ITERATIONS (100000)
 
 void ping_thread (void)
 {
@@ -266,7 +266,7 @@ void ping_thread (void)
             }
             else
             {
-                //debug_printf( "ping ipc\n");
+                debug_printf( "ping ipc\n");
                 pingpong_ipc (pong_tid, untyped);
             }
 	
@@ -289,9 +289,9 @@ void ping_thread (void)
         }
     }
     printf ("Average IPC : %lu cycles, %lu us, %lu instrs\n",
-            ((unsigned long)(avgcycles)) / (ITERATIONS),
-            ((unsigned long)(avgus)) / (ITERATIONS),
-            ((unsigned long)(avginstrs)) / (ITERATIONS));
+            ((avgcycles)) / (ITERATIONS),
+            ((avgus)) / (ITERATIONS),
+            ((avginstrs)) / (ITERATIONS));
 
     // Tell master that we're finished
     L4_Set_MsgTag (L4_Niltag);

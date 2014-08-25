@@ -2,7 +2,7 @@
 # Automatically generated, don't edit
 #
 # Generated on: ubuntu
-# At: Mon, 25 Aug 2014 16:41:44 +0000
+# At: Mon, 25 Aug 2014 18:42:25 +0000
 # Linux version 3.13.0-24-generic (buildd@roseapple) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #46-Ubuntu SMP Thu Apr 10 19:08:14 UTC 2014
 
 #
@@ -54,39 +54,22 @@ CONFIG_MAX_IOAPICS=2
 CONFIG_APIC_TIMER_TICK=1000
 
 CONFIG_SMP=y
-CONFIG_SMP_MAX_PROCS=4
-CONFIG_SMP_IDLE_POLL=y
+CONFIG_SMP_MAX_PROCS=40
+# CONFIG_SMP_IDLE_POLL is not set
 
 
 #
 # Kernel
 #
-CONFIG_EXPERIMENTAL=y
-
-#
-# Experimental Features
-#
-CONFIG_X_PAGER_EXREGS=y
-CONFIG_X_CTRLXFER_MSG=y
-CONFIG_X_X86_HVM=y
-# CONFIG_X_EVT_LOGGING is not set
-
-#
-# Kernel scheduling policy
-#
-CONFIG_SCHED_RR=y
-# CONFIG_X_SCHED_HS is not set
-
-
+# CONFIG_EXPERIMENTAL is not set
 CONFIG_IPC_FASTPATH=y
 # CONFIG_DEBUG is not set
 # CONFIG_DEBUG_SYMBOLS is not set
 # CONFIG_PERFMON is not set
-CONFIG_SPIN_WHEELS=y
-CONFIG_NEW_MDB=y
-CONFIG_STATIC_TCBS=y
+# CONFIG_SPIN_WHEELS is not set
+# CONFIG_NEW_MDB is not set
+# CONFIG_STATIC_TCBS is not set
 # CONFIG_X86_SMALL_SPACES is not set
-# CONFIG_X86_IO_FLEXPAGES is not set
 
 
 #
