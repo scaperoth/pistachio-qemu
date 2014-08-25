@@ -27,8 +27,11 @@ Bootable Image created using Ubuntu's "Disk Image Writer"
 	* ../user/configure --prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport     
 	* make     
 	* make install     
-	* cd ../../
-	* (using the top level makefile from this repository) make     
+	* if using this repo
+		+ cd ../../
+		+ (using the top level makefile from this repository) make     
+	* otherwise
+		+ follow instructions at http://www.l4ka.org/120.php starting at Booting and Runnin
 
 *** Initial Configuration in menuconfig:
 	* Hardware
