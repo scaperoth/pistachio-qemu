@@ -15,7 +15,7 @@ Bootable Image created using Ubuntu's "Disk Image Writer"
 	* in the "kernel/" folder, run "make BUILDDIR=$(pwd)/../x86-kernel-build"    
 	* cd ../x86-kernel-build    
 	* make menuconfig     
-	* choose your options    
+	* choose your options (see next section)      
 	* make    
 	* mkdir ../x86-x32-user-build/    
 	* mkdir ../x86-x32-user-install/    
@@ -30,6 +30,18 @@ Bootable Image created using Ubuntu's "Disk Image Writer"
 	* cd ../../
 	* (using the top level makefile from this repository) make     
 
+*** Initial Configuration in menuconfig:
+	* Hardware
+		+ x86 Basic Architecture
+		+ 32-bit
+		+ Pentium 4
+		+ Multiprocessor Support
+		+ 40 Max number of CPUs
+	* Kernel
+		+ Fast IPC Path
+		+ Enable Spin Wheels
+		+ New mapping database
+		+ Use a non-virtual linear array for TCB management
 
 *** Tasks
 <2014-05-31 Sat>-<2014-06-01 Sun>
@@ -40,16 +52,12 @@ Linux v 12.04: uname -- Linux ubuntu 3.11.0-22-generic #38~precise1-Ubuntu SMP i
 **** DONE Install autoconf to run pistachio configure.in file
 **** DONE install pistachio and add to repo: 
 http://www.l4ka.org/154.php
-set up the make menuconfig with x86 basic architecture, 32 bit sub architecture (processor architecture)
-with a pentium1  processor type 
-Debugging mode enabled. Performance monitoring enabled.    
-No options chosen for debugger.
+set up the make menuconfig with x86 basic architecture, 32 bit sub architecture (processor architecture)      
+    
 ***** DONE configure user level pistachio
 unable to run configuration. used autoconf to build ../user/configure.in, but make is throwing errors.      
-
-receiving error: "no rule to make target 'config.h', needed by 'amd64.o'. Stop.
       
-*To convgure run ../user/configure --prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport    
+****** To configure run ../user/configure "--prefix=$(pwd)/../x86-x32-user-install --with-kerneldir=../x86-kernel-build --without-comport"      
         
 ***** DONE
 FIX NOTE: used suggestion found @ https://lists.gnu.org/archive/html/nmh-workers/2008-08/msg00032.html. running autoheader then autoconf in the l4ka-pistachio/user/ folder resulted in a clean build.
@@ -82,12 +90,12 @@ root (hd0,0)
 
 setup (hd0)         
 
-**** DONE run pistachio on qemu
-Followed instrctuions found at http://www.l4ka.org/120.php under the *Booting and Running* section.     
+**** DONE run pistachio on qemu      
+Followed instructuions found at http://www.l4ka.org/120.php under the *Booting and Running* section.     
 
 Exception to guide: Ran using /usr/sbin/grub and /usr/local/libexec/l4/ instead of /sbin/grub and l4ka-pistachio/x86-x32-user-install/libexec/l4/ respectively
      
-final command once image was built: qemu -serial stdio pistachio.img
+final command once image was built: qemu pistachio.img   
     
 *Other Notes*      
 use "sudo make image" to build image file
@@ -101,10 +109,8 @@ use makefile found in l4ka-pistachio/x86-x36-user-build/apps/bench/pingpong
     
 this makefile can be used as a template to build custom modules.      
      
-current custom module is "mypingpong" and is a debugging duplicate of "pingpong"
+current custom module is "mypingpong" and is a debugging "duplicate" of pingpong      
 
 ***** DONE     
-to edit mypingpong (custom module) run make from within the top directory mypingpong folder (a make clean may be necessary)      
-
-then run "make image" from the top project directoy
+edit mypingpong (custom module) and run make from within the top directory     
 
